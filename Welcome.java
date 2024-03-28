@@ -41,8 +41,8 @@ public class Welcome extends JFrame implements ActionListener {
         panel.setBounds(30, 30, 1200, 620);
         panel.setBackground(new Color(0xD9D9D9));
 
-        JLabel content = new JLabel("Hey there!");
-        content.setBounds(450, 200, 980, 100);
+        JLabel content = new JLabel("Hey partner!");
+        content.setBounds(415, 200, 980, 100);
         content.setForeground(Color.BLACK);
         content.setFont(new Font("Arial", Font.BOLD, 70));
         panel.add(content);
