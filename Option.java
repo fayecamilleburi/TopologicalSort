@@ -2,12 +2,45 @@ package machine;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.awt.geom.RoundRectangle2D;
+
 import javax.swing.*;
+
+class RoundButton extends JButton {
+    public RoundButton(String label) {
+        super(label);
+        setContentAreaFilled(false);
+    }
+
+    protected void paintComponent(Graphics g) {
+        if (getModel().isArmed()) {
+            g.setColor(getBackground());
+        } else {
+            g.setColor(new Color(76, 122, 146));
+        }
+        g.fillRoundRect(0, 0, getWidth() - 1, getHeight() - 1, 20, 20);
+        super.paintComponent(g);
+    }
+
+    protected void paintBorder(Graphics g) {
+        g.setColor(getForeground());
+        g.drawRoundRect(0, 0, getWidth() - 1, getHeight() - 1, 20, 20);
+    }
+
+    Shape shape;
+
+    public boolean contains(int x, int y) {
+        if (shape == null || !shape.getBounds().equals(getBounds())) {
+            shape = new RoundRectangle2D.Float(0, 0, getWidth() - 1, getHeight() - 1, 20, 20);
+        }
+        return shape.contains(x, y);
+    }
+}
 
 public class Option extends JPanel {
     private String name;
     private JLabel intro;
-    private JButton optionOne, optionTwo;
+    private RoundButton optionOne, optionTwo;
 
     public Option(String name) {
         this.name = name;
@@ -18,19 +51,19 @@ public class Option extends JPanel {
     public void initComponents() {
         setLayout(null);
         setPreferredSize(new Dimension(1280, 720));
-        setBackground(new Color(0x737373));
-
+        setBackground(new Color(0, 66, 100));
         add(mainPanel());
     }
 
     public JPanel mainPanel() {
         JPanel panel = new JPanel(null);
         panel.setSize(new Dimension(1280, 720));
-        panel.setBackground(new Color(0x737373));
+        panel.setBackground(new Color(0, 66, 100));
 
         panel.add(optionPanel());
         panel.add(contentPanel());
         panel.add(buttonPanel());
+        panel.add(semiPanel());
 
         return panel;
     }
@@ -38,10 +71,10 @@ public class Option extends JPanel {
     public JPanel optionPanel() {
         JPanel panel = new JPanel(new GridBagLayout());
         panel.setBounds(30, 30, 1200, 250);
-        panel.setBackground(new Color(0xD9D9D9));
+        panel.setBackground(new Color(244, 238, 255));
     
         JLabel greetings = new JLabel("Welcome, " + name + "!");
-        greetings.setForeground(Color.BLACK);
+        greetings.setForeground(new Color(9, 38, 53));
         greetings.setFont(new Font("Arial", Font.BOLD, 70));
     
         GridBagConstraints gbc = new GridBagConstraints();
@@ -57,7 +90,7 @@ public class Option extends JPanel {
     public JPanel contentPanel() {
         JPanel panel = new JPanel(new GridBagLayout());
         panel.setBounds(30, 250, 1200, 65);
-        panel.setBackground(new Color(0xD9D9D9));
+        panel.setBackground(new Color(244, 238, 255));
 
         intro = new JLabel("Get Ready With Me to");
         intro.setForeground(Color.BLACK);
@@ -73,34 +106,28 @@ public class Option extends JPanel {
         return panel;
     }
 
-    public JPanel buttonPanel() {
+    public JPanel semiPanel() {
         JPanel panel = new JPanel(null);
-        panel.setBounds(30, 275, 1200, 375);
-        panel.setBackground(new Color(0xD9D9D9));
-        
-        optionOne = new JButton("Prepare for School");
-        optionOne.setBounds(395, 50, 200, 80);
-        optionOne.addActionListener(this::actionPerformedOptionOne);
-        panel.add(optionOne);
+        panel.setBounds(15, 15, 1230, 650); // xy , wid ,h
+        panel.setBackground(new Color(127, 160, 177));
 
-        optionTwo = new JButton("Getting Dressed for School");
-        optionTwo.setBounds(615, 50, 200, 80);
-        optionTwo.addActionListener(this::actionPerformedOptionTwo);
-        panel.add(optionTwo);
-        
         return panel;
     }
 
-    public void actionPerformedOptionOne(ActionEvent e) {
-        if (e.getSource() == optionOne) {
-            // Add your functionality here
-        }
-    }
+    public JPanel buttonPanel() {
+        JPanel panel = new JPanel(null);
+        panel.setBounds(30, 275, 1200, 375);
+        panel.setBackground(new Color(244, 238, 255));
+        
+        optionOne = new RoundButton("Prepare for School");
+        optionOne.setBounds(395, 50, 200, 80);
+        panel.add(optionOne);
 
-    public void actionPerformedOptionTwo(ActionEvent e) {
-        if (e.getSource() == optionTwo) {
-            // Add your functionality here
-        }
+        optionTwo = new RoundButton("Getting Dressed for School");
+        optionTwo.setBounds(615, 50, 200, 80);
+        panel.add(optionTwo);
+        
+        return panel;
     }
 
     public static void main(String[] args) {
