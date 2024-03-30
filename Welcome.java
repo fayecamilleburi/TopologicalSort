@@ -1,90 +1,66 @@
+//package machine;
+
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
-public class Welcome extends JFrame implements ActionListener {
-    public JPanel contentPanel;
+public class Welcome extends JPanel implements ActionListener {
+    private String name;
     private JTextField nameField;
-    private JButton enterButton;
-    private Option optionPanel;
+    private JButton enterButton, optionOne, optionTwo;
 
     public Welcome() {
         initComponents();
     }
-    
-    public void initComponents() {
-        setTitle("GRWM");
-        setSize(new Dimension(1280, 720)); // 
 
-        setResizable(false);
-        setLocationRelativeTo(null);
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
+    private void initComponents() {
+        setLayout(null);
+        setPreferredSize(new Dimension(1280, 720));
+        setBackground(new Color(0x5C3420));
 
-        contentPanel = mainPanel();
-        add(contentPanel);
-    }
-
-    public JPanel mainPanel() {
-        JPanel panel = new JPanel(null);
-        panel.setSize(new Dimension(1280, 720));
-        panel.setBackground(new Color(9,38,53));
-
-        
-        panel.add(contentPanel());
-        panel.add(semiPanel());
-
-        return panel;
-    }
-
-    public JPanel semiPanel() {
-        JPanel panel = new JPanel(null);
-        panel.setBounds(15, 15, 1230, 650); // xy , wid ,h
-        panel.setBackground(new Color(127, 160, 177));
-
-        return panel;
+        add(contentPanel());
     }
 
     public JPanel contentPanel() {
         JPanel panel = new JPanel(null);
-        panel.setBounds(50, 50, 1160, 580);// 30 30 1200 620
-        panel.setBackground(new Color(244,238,255));
+        panel.setBounds(30, 30, 1200, 620);
+        panel.setBackground(new Color(0xEFE7DD));
 
-        JLabel content = new JLabel("Hey partner!");
-        content.setBounds(395, 175, 980, 100); // -20
-        content.setForeground(new Color(9,38,53));
-        content.setFont(new Font("Monospace", Font.BOLD, 70));
-        panel.add(content);
+        JLabel heading = new JLabel("<html><b><i>Hey, partner!</i></b></html>");
+        heading.setBounds(0, 170, 1200, 80);
+        heading.setForeground(new Color(0x764B36));
+        heading.setFont(new Font("Arial", Font.PLAIN, 60));
+        heading.setHorizontalAlignment(JLabel.CENTER);
+        panel.add(heading);
 
         nameField = new JTextField();
-        nameField.setBounds(395, 285, 400, 20);
-        nameField.setBackground(new Color(9,38,53));
+        nameField.setBounds(350, 270, 500, 20);
         nameField.setForeground(Color.WHITE);
+        nameField.setBackground(new Color(0x9B4922));
+        nameField.setHorizontalAlignment(JTextField.CENTER);
         panel.add(nameField);
 
-        JLabel subtext = new JLabel("Enter your name here");
-        subtext.setBounds(520, 305, 200, 30);
-        subtext.setForeground(new Color(0x737373));
-        subtext.setFont(new Font("", Font.ITALIC, 15));
+        JLabel subtext = new JLabel("Enter your name");
+        subtext.setBounds(0, 290, 1200, 12);
+        subtext.setForeground(new Color(0x764B36));
+        subtext.setFont(new Font("Arial", Font.ITALIC, 12));
+        subtext.setHorizontalAlignment(JLabel.CENTER);
         panel.add(subtext);
 
-        enterButton = new JButton("<html><span class='btn-34'>Enter</span></html>");
-        enterButton.setBounds(545, 345, 100, 30);
-        enterButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
-        enterButton.setBackground(new Color(9,38,53));
+        enterButton = new JButton("Enter");
+        enterButton.setBounds(550, 332, 100, 30);
+        enterButton.setBackground(new Color(0x5C3420));
         enterButton.setForeground(Color.WHITE);
+        enterButton.setFont(new Font("Arial", Font.BOLD, 12));
         enterButton.addActionListener(this);
         panel.add(enterButton);
-
-
-
-
 
         return panel;
     }
 
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == enterButton) {
-            String name = capitalizeFirstLetter(nameField.getText().trim());
+            name = capitalizeFirstLetter(nameField.getText().trim());
 
             if (name.trim().isEmpty()) {
                 JOptionPane optionPane = new JOptionPane("Please enter your name.", JOptionPane.ERROR_MESSAGE);
@@ -92,13 +68,8 @@ public class Welcome extends JFrame implements ActionListener {
                 dialog.setVisible(true);
                 return;
             } else {
-                // Switch to Option panel
-                getContentPane().removeAll();
-                getContentPane().add(new Option(name));
-                revalidate();
-                repaint();
+                displayOptionPanel();
             }
-            optionPanel.setVisible(true);
         }
     }
 
@@ -119,10 +90,88 @@ public class Welcome extends JFrame implements ActionListener {
         return sb.toString().trim();
     }
 
+    public void displayOptionPanel() {
+        removeAll();
+
+        add(optionHeading());
+        add(optionChoices());
+
+        revalidate();
+        repaint();
+    }    
+
+    public JPanel optionHeading() {
+        JPanel panel = new JPanel(new GridBagLayout());
+        panel.setBounds(30, 30, 1200, 260);
+        panel.setBackground(new Color(0xEFE7DD));
+
+        JLabel greetings = new JLabel("Welcome, " + name + "!");
+        greetings.setForeground(new Color(0x764B36));
+        greetings.setFont(new Font("Arial", Font.BOLD, 70));
+    
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.gridx = 0;
+        gbc.gridy = 0; // Start at the top
+        gbc.weighty = 1; // Add vertical space to push it to the bottom
+        gbc.anchor = GridBagConstraints.PAGE_END; // Align at the bottom
+        panel.add(greetings, gbc);
+
+        return panel;
+    }
+
+    public JPanel optionChoices() {
+        JPanel panel = new JPanel(null);
+        panel.setBounds(30, 290, 1200, 360);
+        panel.setBackground(new Color(0xEFE7DD));
+
+        JLabel intro = new JLabel("Get Ready With Me to");
+        intro.setBounds(0, 0, 1200, 30);
+        intro.setForeground(new Color(0x9B4922));
+        intro.setFont(new Font("Arial", Font.ITALIC, 30));
+        intro.setHorizontalAlignment(JLabel.CENTER);
+        panel.add(intro);
+
+        optionOne = new JButton("Prepare for School");
+        optionOne.setBounds(380, 50, 200, 80);
+        optionOne.setBackground(new Color(0x5C3420));
+        optionOne.setForeground(Color.WHITE);
+        optionOne.setFont(new Font("Arial", Font.BOLD, 13));
+        optionOne.addActionListener(this::actionPerformedOne);
+        panel.add(optionOne);
+
+        JLabel or = new JLabel("or");
+        or.setBounds(585, 80, 30, 20);
+        or.setForeground(new Color(0x9B4922));
+        or.setFont(new Font("Arial", Font.ITALIC, 12));
+        or.setHorizontalAlignment(JLabel.CENTER);
+        panel.add(or);
+
+        optionTwo = new JButton("Get Dressed");
+        optionTwo.setBounds(620, 50, 200, 80);
+        optionTwo.setBackground(new Color(0x5C3420));
+        optionTwo.setForeground(Color.WHITE);
+        optionTwo.setFont(new Font("Arial", Font.BOLD, 13));
+        optionTwo.addActionListener(this::actionPerformedTwo);
+        panel.add(optionTwo);
+
+        return panel;
+    }
+
+    public void actionPerformedOne(ActionEvent e) {
+        if (e.getSource() == optionOne) {
+            // Code goes here...
+        }
+    }
+
+    public void actionPerformedTwo(ActionEvent e) {
+        if (e.getSource() == optionTwo) {
+            // Code goes here...
+        }
+    }
+    
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {
-            Welcome welcome = new Welcome();
-            welcome.setVisible(true);
+            new Welcome().setVisible(true);
         });
     }
 }
