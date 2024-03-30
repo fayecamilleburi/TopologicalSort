@@ -1,8 +1,9 @@
-package machine;
+//package machine;
 
 import java.awt.*;
 import java.awt.event.*;
 import java.util.*;
+import java.util.List;
 import javax.swing.*;
 
 public class DFSui extends JFrame implements ActionListener {
@@ -12,6 +13,7 @@ public class DFSui extends JFrame implements ActionListener {
     private JTextArea submitOutput, algoOutput;
     private JButton backButton, exitButton, submitButton;
     private ArrayList<JPanel> clickedPanels;
+    private LinkedList<Integer>order = new LinkedList<>(); // Added by jim. Used to store panel index for order checking
     private JPanel[] panelsArray = new JPanel[7];
 
     public DFSui() {
@@ -212,9 +214,7 @@ public class DFSui extends JFrame implements ActionListener {
             }
         });
 
-        String htmlContent = "<html>Eat<br>breakfast</html>";
-
-        breakfastLabel = new JLabel(htmlContent);
+        breakfastLabel = new JLabel("Eat breakfast");
         breakfastLabel.setBounds(0, 0, 105, 80);
         breakfastLabel.setForeground(Color.WHITE);
         breakfastLabel.setFont(new Font("Arial", Font.BOLD, 15));
@@ -260,9 +260,7 @@ public class DFSui extends JFrame implements ActionListener {
             }
         });
 
-        String htmlContent = "<html>Prepare<br>things<br>for school</html>";
-
-        thingsLabel = new JLabel(htmlContent);
+        thingsLabel = new JLabel("Prepare bag");
         thingsLabel.setBounds(0, 0, 105, 80);
         thingsLabel.setForeground(Color.WHITE);
         thingsLabel.setFont(new Font("Arial", Font.BOLD, 15));
@@ -381,19 +379,36 @@ public class DFSui extends JFrame implements ActionListener {
         return panel;
     }
 
+    // Added by jim. Method for converting linked list into string
+    public static String linkedListToString(LinkedList<Integer> linkedList) { 
+        StringBuilder sb = new StringBuilder();
+
+        for (int i = 0; i < linkedList.size(); i++) {
+            sb.append(linkedList.get(i));
+            if (i < linkedList.size() - 1) {
+                sb.append(" ");
+            }
+        }
+
+        return sb.toString();
+    }
+
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == submitButton) {
             if (clickedPanels == null || clickedPanels.size() < 7) {
                 JOptionPane optionPane = new JOptionPane("Make sure all panels are visited.", JOptionPane.ERROR_MESSAGE);
                 JDialog dialog = optionPane.createDialog("Error");
                 dialog.setVisible(true);
+
             } else {
+
                 // Clear the submitOutput JTextArea before printing
                 submitOutput.setText("Your routine is:\n");
     
                 // Set font for submitOutput JTextArea
                 Font outputFont = new Font("Arial", Font.PLAIN, 14); // Example font settings
                 submitOutput.setFont(outputFont);
+                algoOutput.setFont(outputFont); // Added by jim
     
                 // Print the contents of clickedPanels to submitOutput with indices
                 for (int i = 0; i < clickedPanels.size(); i++) {
@@ -403,6 +418,7 @@ public class DFSui extends JFrame implements ActionListener {
                     for (int j = 0; j < panelsArray.length; j++) {
                         if (panel == panelsArray[j]) {
                             panelIndex = j;
+                            order.add(j); 
                             break;
                         }
                     }
@@ -412,9 +428,46 @@ public class DFSui extends JFrame implements ActionListener {
                         submitOutput.append(panelIndex + ". " + panelText + "\n");
                     }
                 }
+                
+                // Added by jim
+                String result = linkedListToString(order); //To be used for comparing to list of possible orders
+                System.out.println(result); // Checks chosen order in terminal. For debugging purpose only
+                
+                // ---------- Topological Sort using DFS ----------
+                // Create the graph for steps to prepare for school
+                TopologicalSort_DFS graph = new TopologicalSort_DFS(7);
+                graph.addEdge(0, 1);
+                graph.addEdge(0, 2);
+                graph.addEdge(0, 3);
+                graph.addEdge(1, 4);
+                graph.addEdge(2, 5);
+                graph.addEdge(3, 6);
+                graph.addEdge(4, 6);
+                graph.addEdge(5, 6);
+
+                // Performs Topological Sort using DFS and stores all possible orders in list
+                List<List<Integer>> allSorts = graph.topologicalSortDFS(); 
+                boolean foundMatch = false;
+
+                for (List<Integer> sort : allSorts) {
+                    StringBuilder sb = new StringBuilder();
+                    for (int vertex : sort) {
+                        sb.append(vertex).append(" ");
+                    }
+                    String currentSortString = sb.toString().trim();
+                    if (result.equals(currentSortString)) {
+                        algoOutput.setText("Order possible!");
+                        foundMatch = true;
+                        break; // No need to continue searching
+                    }
+                }
+
+                if (!foundMatch) {
+                    algoOutput.setText("Incorrect order!");
+                }
             }
         }
-    }    
+    }
 
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {
