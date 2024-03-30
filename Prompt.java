@@ -1,11 +1,11 @@
-// package machine;
+//package machine;
 
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
 public class Prompt extends JFrame implements ActionListener {
-    private JButton startButton;
+    private JButton tutorialButton, startButton, creditsButton;
 
     public Prompt() {
         initComponents();
@@ -51,12 +51,29 @@ public class Prompt extends JFrame implements ActionListener {
         subheading.setHorizontalAlignment(JLabel.CENTER);
         panel.add(subheading);
 
+        tutorialButton = new JButton("Tutorial");
+        tutorialButton.setBounds(440, 350, 100, 30);
+        tutorialButton.setBackground(new Color(0x9B4922));
+        tutorialButton.setForeground(Color.WHITE);
+        tutorialButton.setFont(new Font("Arial", Font.BOLD, 12));
+        tutorialButton.addActionListener(this::actionPerformedTutorial);
+        panel.add(tutorialButton);
+
         startButton = new JButton("Start");
-        startButton.setBounds(550, 370, 100, 30);
+        startButton.setBounds(550, 350, 100, 30);
         startButton.setBackground(new Color(0x5C3420));
         startButton.setForeground(Color.WHITE);
+        startButton.setFont(new Font("Arial", Font.BOLD, 12));
         startButton.addActionListener(this);
         panel.add(startButton);
+
+        creditsButton = new JButton("Credits");
+        creditsButton.setBounds(660, 350, 100, 30);
+        creditsButton.setBackground(new Color(0x9B4922));
+        creditsButton.setForeground(Color.WHITE);
+        creditsButton.setFont(new Font("Arial", Font.BOLD, 12));
+        creditsButton.addActionListener(this::actionPerformedCredits);
+        panel.add(creditsButton);
 
         return panel;
     }
@@ -67,6 +84,18 @@ public class Prompt extends JFrame implements ActionListener {
             getContentPane().add(new Welcome());
             revalidate();
             repaint();
+        }
+    }
+
+    public void actionPerformedTutorial(ActionEvent e) {
+        if (e.getSource() == tutorialButton) {
+            // Code goes here...
+        }
+    }
+
+    public void actionPerformedCredits(ActionEvent e) {
+        if (e.getSource() == creditsButton) {
+            // Code goes here...
         }
     }
 
