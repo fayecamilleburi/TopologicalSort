@@ -1,4 +1,4 @@
-//package machine;
+// package machine;
 
 import java.awt.*;
 import java.awt.event.*;
@@ -55,7 +55,7 @@ public class Option extends JPanel implements ActionListener {
         panel.setBackground(new Color(0xEFE7DD));
 
         JLabel intro = new JLabel("Get Ready With Me to");
-        intro.setBounds(0, 0, 1200, 30);
+        intro.setBounds(0, 5, 1200, 30);
         intro.setForeground(new Color(0x9B4922));
         intro.setFont(new Font("Arial", Font.ITALIC, 30));
         intro.setHorizontalAlignment(JLabel.CENTER);
@@ -89,7 +89,15 @@ public class Option extends JPanel implements ActionListener {
 
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == optionOne) {
-            // Code goes here...
+            Window window = SwingUtilities.getWindowAncestor(this);
+
+            if (window != null) {
+            window.dispose();
+            }
+
+            SwingUtilities.invokeLater(() -> {
+                new DFS_UI().setVisible(true);
+            });
         }
     }
 
