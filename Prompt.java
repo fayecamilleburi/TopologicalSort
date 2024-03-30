@@ -11,7 +11,7 @@ public class Prompt extends JFrame implements ActionListener {
     private JButton tutorialButton, startButton, creditsButton, enterButton;
 
     public Prompt() {
-        initComponents();
+        initComponents();     
     }
 
     private void initComponents() {
@@ -162,11 +162,7 @@ public class Prompt extends JFrame implements ActionListener {
                 repaint();
             }
         }
-    }
-
-    public String getName() {
-        return name;
-    }
+    }   
 
     private String capitalizeFirstLetter(String str) {
         if (str.isEmpty()) {
