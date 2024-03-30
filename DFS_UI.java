@@ -8,6 +8,7 @@ import javax.swing.*;
 
 public class DFS_UI extends JFrame implements ActionListener {
     private JLabel labelZero, labelOne, labelTwo, labelThree, labelFour, labelFive, labelSix;
+    private JTextArea resultsArea;
     private JButton backButton, exitButton, submitButton;
     private ArrayList<JPanel> clickedPanels;
     private JPanel[] panelsArray = new JPanel[7];
@@ -15,7 +16,7 @@ public class DFS_UI extends JFrame implements ActionListener {
     public DFS_UI() {
         initComponents();
 
-        clickedPanels = new ArrayList<>();
+        clickedPanels = new ArrayList<>();  
     }
 
     private void initComponents() {
@@ -77,7 +78,11 @@ public class DFS_UI extends JFrame implements ActionListener {
 
     public void actionPerformedBack(ActionEvent e) {
         if (e.getSource() == backButton) {
-            // Code goes here...
+            dispose();
+
+            SwingUtilities.invokeLater(() -> {
+                new Choices().setVisible(true);
+            });
         }
     }
 
@@ -94,6 +99,7 @@ public class DFS_UI extends JFrame implements ActionListener {
 
         panel.add(description());
         panel.add(itemPanel());
+        panel.add(resultsPanel());
 
         return panel;
     }
@@ -149,25 +155,25 @@ public class DFS_UI extends JFrame implements ActionListener {
         panel.setBackground(new Color(0xEFE7DD));
 
         panelsArray[0] = nodeZero();
-        panel.add(nodeZero());
+        panel.add(panelsArray[0]);
 
         panelsArray[1] = nodeOne();
-        panel.add(nodeOne());
+        panel.add(panelsArray[1]);
 
         panelsArray[2] = nodeTwo();
-        panel.add(nodeTwo());
+        panel.add(panelsArray[2]);
 
         panelsArray[3] = nodeThree();
-        panel.add(nodeThree());
+        panel.add(panelsArray[3]);
 
         panelsArray[4] = nodeFour();
-        panel.add(nodeFour());
+        panel.add(panelsArray[4]);
 
         panelsArray[5] = nodeFive();
-        panel.add(nodeFive());
+        panel.add(panelsArray[5]);
 
         panelsArray[6] = nodeSix();
-        panel.add(nodeSix());
+        panel.add(panelsArray[6]);
 
         submitButton = new JButton("Submit");
         submitButton.setBounds(360, 460, 100, 30);
@@ -342,16 +348,59 @@ public class DFS_UI extends JFrame implements ActionListener {
         return panel;
     }
 
+    public JPanel resultsPanel() {
+        JPanel panel = new JPanel(null);
+        panel.setBounds(830, 10, 424, 580);
+        panel.setBackground(new Color(0xEFE7DD));
+    
+        JLabel subheading = new JLabel("My routine:");
+        subheading.setBounds(20, 50, 424, 25);
+        subheading.setForeground(new Color(0x764B36));
+        subheading.setFont(new Font("Arial", Font.BOLD, 20));
+        panel.add(subheading);
+    
+        resultsArea = new JTextArea();
+        resultsArea.setEditable(false);
+        resultsArea.setBounds(20, 80, 384, 275);
+        resultsArea.setBackground(new Color(0xEFE7DD));
+        panel.add(resultsArea);
+    
+        return panel;
+    }    
+
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == submitButton) {
             if (clickedPanels == null || clickedPanels.size() < 7) {
                 showErrorDialog("Make sure all panels are visited.");
             } else {
-                // Code goes here...
+                displayClickedPanels();
             }
         }
     }
-    
+
+    private void displayClickedPanels() {
+        resultsArea.setFont(new Font("Arial", Font.PLAIN, 25));
+        resultsArea.setForeground(new Color(0x5C3420));
+
+        // Print the contents of clickedPanels to submitOutput with indices
+        for (int i = 0; i < clickedPanels.size(); i++) {
+            JPanel panel = clickedPanels.get(i);
+            // Find the index of the panel in the panelsArray
+            int panelIndex = -1;
+            for (int j = 0; j < panelsArray.length; j++) {
+                if (panel == panelsArray[j]) {
+                    panelIndex = j;
+                    break;
+                }
+            }
+            if (panelIndex != -1) {
+                JLabel label = (JLabel) panel.getComponent(0); // Assuming the JLabel is the first component
+                String panelText = label.getText();
+                resultsArea.append(panelIndex + ". " + panelText + "\n");
+            }
+        }
+    }
+
     private void showErrorDialog(String message) {
         JOptionPane optionPane = new JOptionPane(message, JOptionPane.ERROR_MESSAGE);
         JDialog dialog = optionPane.createDialog("Error");
