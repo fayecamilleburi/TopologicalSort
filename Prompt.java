@@ -3,7 +3,6 @@
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
-import javax.swing.border.Border;
 
 public class Prompt extends JFrame implements ActionListener {
     public String name;
