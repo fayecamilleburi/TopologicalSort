@@ -1,4 +1,4 @@
-// package machine;
+//package machine;
 
 import java.awt.*;
 import java.awt.event.*;
@@ -102,7 +102,11 @@ public class Choices extends JFrame implements ActionListener {
 
     public void actionPerformedTwo(ActionEvent e) {
         if (e.getSource() == optionTwo) {
-            // Code goes here...
+            dispose();
+
+            SwingUtilities.invokeLater(() -> {
+                new Gender().setVisible(true);
+            });
         }
     }
 
