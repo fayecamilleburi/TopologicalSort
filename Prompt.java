@@ -144,6 +144,7 @@ public class Prompt extends JFrame implements ActionListener {
         enterButton.setBackground(new Color(0x5C3420));
         enterButton.setForeground(Color.WHITE);
         enterButton.setFont(new Font("Arial", Font.BOLD, 12));
+        enterButton.setFocusable(false);
         enterButton.addActionListener(this::actionPerformedEnter);
         panel.add(enterButton);
 
