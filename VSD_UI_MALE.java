@@ -182,7 +182,7 @@ public class VSD_UI_MALE extends JFrame implements ActionListener {
         panel.add(panelsArray2[8]);
 
         clearButton = new JButton("Clear");
-        clearButton.setBounds(10, 460, 100, 30);
+        clearButton.setBounds(250, 460, 100, 30);
         clearButton.setBackground(new Color(0x5C3420));
         clearButton.setForeground(Color.WHITE);
         clearButton.setFont(new Font("Arial", Font.BOLD, 12));
@@ -403,7 +403,7 @@ public class VSD_UI_MALE extends JFrame implements ActionListener {
         matchArea = new JTextArea();
         matchArea.setEditable(false);
         matchArea.setBounds(20, 365, 384, 50);
-        matchArea.setBackground(Color.BLUE);
+        matchArea.setBackground(new Color(0xEFE7DD);
         panel.add(matchArea);
 
         readyButton = new JButton("We're ready!");
