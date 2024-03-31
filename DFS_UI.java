@@ -1,4 +1,4 @@
-// package machine;
+package machine;
 
 import java.awt.*;
 import java.awt.event.*;
@@ -8,8 +8,8 @@ import javax.swing.*;
 
 public class DFS_UI extends JFrame implements ActionListener {
     private JLabel labelZero, labelOne, labelTwo, labelThree, labelFour, labelFive, labelSix;
-    private JTextArea resultsArea;
-    private JButton backButton, exitButton, submitButton;
+    private JTextArea resultsArea, matchArea;
+    private JButton backButton, exitButton, submitButton, readyButton;
     private ArrayList<JPanel> clickedPanels;
     private JPanel[] panelsArray = new JPanel[7];
 
@@ -364,6 +364,20 @@ public class DFS_UI extends JFrame implements ActionListener {
         resultsArea.setBounds(20, 80, 384, 275);
         resultsArea.setBackground(new Color(0xEFE7DD));
         panel.add(resultsArea);
+
+        matchArea = new JTextArea();
+        matchArea.setEditable(false);
+        matchArea.setBounds(20, 365, 384, 50);
+        matchArea.setBackground(Color.BLUE);
+        panel.add(matchArea);
+
+        readyButton = new JButton("We're ready!");
+        readyButton.setBounds(290, 460, 120, 30);
+        readyButton.setBackground(new Color(0x5C3420));
+        readyButton.setForeground(Color.WHITE);
+        readyButton.setFont(new Font("Arial", Font.ITALIC, 12));
+        readyButton.addActionListener(this::actionPerformedReady);
+        panel.add(readyButton);
     
         return panel;
     }    
@@ -405,6 +419,26 @@ public class DFS_UI extends JFrame implements ActionListener {
         JOptionPane optionPane = new JOptionPane(message, JOptionPane.ERROR_MESSAGE);
         JDialog dialog = optionPane.createDialog("Error");
         dialog.setVisible(true);
+    }
+
+    public void actionPerformedReady(ActionEvent e) {
+        if (e.getSource() == readyButton) {
+            if (clickedPanels.isEmpty()) {
+                showErrorDialog("Select your routine first!");
+            }
+                //Use else if statement for this
+                //Condition = If the results match with the possible outputs, then show
+                //this code:
+                //SwingUtilities.invokeLater(() -> {
+                //new Success().setVisible(true);
+                //});
+
+                //Else statement
+                //If the results does not match, show this code:
+                //SwingUtilities.invokeLater(() -> {
+                //new NoMatch().setVisible(true);
+                //});
+        }
     }
 
     private void togglePanelState(JPanel panel) {
