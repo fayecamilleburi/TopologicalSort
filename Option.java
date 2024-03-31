@@ -105,7 +105,7 @@ public class Option extends JPanel implements ActionListener {
     }
 
     public void actionPerformedTwo(ActionEvent e) {
-        if (e.getSource() == optionOne) {
+        if (e.getSource() == optionTwo) {
             Window window = SwingUtilities.getWindowAncestor(this);
 
             if (window != null) {
@@ -115,7 +115,7 @@ public class Option extends JPanel implements ActionListener {
             SwingUtilities.invokeLater(() -> {
                 new Gender().setVisible(true);
             });
-        }
+            }
     }
     
     public static void main(String[] args) {
