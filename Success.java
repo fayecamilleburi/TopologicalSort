@@ -40,16 +40,16 @@ public class Success extends JFrame implements ActionListener {
 
         backButton = new JButton("Back");
         backButton.setBounds(40, 20, 100, 30);
-        backButton.setBackground(new Color(0x9B4922));
-        backButton.setForeground(Color.WHITE);
+        backButton.setBackground(new Color(0xEFE7DD));
+        backButton.setForeground(new Color(0x5C3420));
         backButton.setFont(new Font("Arial", Font.BOLD, 12));
         backButton.addActionListener(this::actionPerformedBack);
         panel.add(backButton);
 
         exitButton = new JButton("Exit");
         exitButton.setBounds(844, 20, 100, 30);
-        exitButton.setBackground(new Color(0x9B4922));
-        exitButton.setForeground(Color.WHITE);
+        exitButton.setBackground(new Color(0xEFE7DD));
+        exitButton.setForeground(new Color(0x5C3420));
         exitButton.setFont(new Font("Arial", Font.BOLD, 12));
         // exitButton.addActionListener(this::actionPerformedExit);
         panel.add(exitButton);
