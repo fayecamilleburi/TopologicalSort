@@ -11,7 +11,7 @@ public class VSD_UI_FEMALE extends JFrame implements ActionListener {
     private JLabel topLabel, UDLabel, socksLabel, uTopLabel, uBotLabel, shoesLabel, IDLabel, accPLabel, goLabel;
     private JLabel headerLabel;
     private JTextArea resultsArea, matchArea;
-    private JButton backButton, exitButton, submitButton, readyButton;
+    private JButton backButton, exitButton, submitButton, readyButton, clearButton;
     private ArrayList<JPanel> clickedPanels;
     private JPanel[] panelsArray2 = new JPanel[9];
     private LinkedList<Integer>order = new LinkedList<>(); // Added by jim. Used to store panel index for order checking
@@ -180,6 +180,14 @@ public class VSD_UI_FEMALE extends JFrame implements ActionListener {
         
         panelsArray2[8] = goPanel();
         panel.add(panelsArray2[8]);
+
+        clearButton = new JButton("Clear");
+        clearButton.setBounds(10, 460, 100, 30);
+        clearButton.setBackground(new Color(0x5C3420));
+        clearButton.setForeground(Color.WHITE);
+        clearButton.setFont(new Font("Arial", Font.BOLD, 12));
+        clearButton.addActionListener(this);
+        panel.add(clearButton);
 
         submitButton = new JButton("Submit");
         submitButton.setBounds(360, 460, 100, 30);
@@ -431,6 +439,10 @@ public class VSD_UI_FEMALE extends JFrame implements ActionListener {
                 displayClickedPanels();
                 orderChecking();
             }
+        }
+
+        if (e.getSource() == clearButton) {
+            // Code goes here...
         }
     }
 
