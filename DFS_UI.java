@@ -1,4 +1,4 @@
-//package machine;
+// package machine;
 
 import java.awt.*;
 import java.awt.event.*;
@@ -10,7 +10,7 @@ import javax.swing.*;
 public class DFS_UI extends JFrame implements ActionListener {
     private JLabel labelZero, labelOne, labelTwo, labelThree, labelFour, labelFive, labelSix;
     private JTextArea resultsArea, matchArea;
-    private JButton backButton, exitButton, submitButton, readyButton;
+    private JButton backButton, exitButton, submitButton, readyButton, clearButton;
     private ArrayList<JPanel> clickedPanels;
     private JPanel[] panelsArray = new JPanel[7];
     private LinkedList<Integer>order = new LinkedList<>(); // Added by jim. Used to store panel index for order checking
@@ -175,6 +175,14 @@ public class DFS_UI extends JFrame implements ActionListener {
 
         panelsArray[6] = nodeSix();
         panel.add(panelsArray[6]);
+
+        clearButton = new JButton("Clear");
+        clearButton.setBounds(10, 460, 100, 30);
+        clearButton.setBackground(new Color(0x5C3420));
+        clearButton.setForeground(Color.WHITE);
+        clearButton.setFont(new Font("Arial", Font.BOLD, 12));
+        clearButton.addActionListener(this);
+        panel.add(clearButton);
 
         submitButton = new JButton("Submit");
         submitButton.setBounds(360, 460, 100, 30);
@@ -369,7 +377,7 @@ public class DFS_UI extends JFrame implements ActionListener {
         matchArea = new JTextArea();
         matchArea.setEditable(false);
         matchArea.setBounds(20, 365, 384, 50);
-        matchArea.setBackground(Color.BLUE);
+        matchArea.setBackground(new Color(0xEFE7DD));
         panel.add(matchArea);
 
         readyButton = new JButton("We're ready!");
@@ -405,6 +413,10 @@ public class DFS_UI extends JFrame implements ActionListener {
                 displayClickedPanels();
                 orderChecking();
             }
+        }
+
+        if (e.getSource() == clearButton) {
+            // Code goes here...
         }
     }
 
@@ -466,7 +478,7 @@ public class DFS_UI extends JFrame implements ActionListener {
             }
             String currentSortString = sb.toString().trim();
             if (result.equals(currentSortString)) {
-                matchArea.setText("I can do that");
+                matchArea.setText("I can do that.");
                 foundMatch = true;
                 break; // No need to continue searching
             }
