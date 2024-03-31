@@ -19,7 +19,7 @@ public class Prompt extends JFrame implements ActionListener {
         setTitle("GRWM");
         setSize(new Dimension(1280, 720));
 
-        ImageIcon icon = new ImageIcon("src/GRWM.png");
+        ImageIcon icon = new ImageIcon("GRWM.png");
         setIconImage(icon.getImage());
         setResizable(false);
         setLocationRelativeTo(null);
