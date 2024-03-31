@@ -1,4 +1,4 @@
-//package machine;
+// package machine;
 
 import java.awt.*;
 import java.awt.event.*;
@@ -8,8 +8,8 @@ import javax.swing.*;
 public class VSD_UI_MALE extends JFrame implements ActionListener {
     private JLabel topLabel, UDLabel, socksLabel, uTopLabel, uBotLabel, shoesLabel, IDLabel, accPLabel, goLabel;
     private JLabel headerLabel;
-    private JTextArea resultsArea;
-    private JButton backButton, exitButton, submitButton;
+    private JTextArea resultsArea, matchArea;
+    private JButton backButton, exitButton, submitButton, readyButton;
     private ArrayList<JPanel> clickedPanels;
     private JPanel[] panelsArray2 = new JPanel[9];
 
@@ -393,6 +393,20 @@ public class VSD_UI_MALE extends JFrame implements ActionListener {
         resultsArea.setBounds(20, 80, 384, 275);
         resultsArea.setBackground(new Color(0xEFE7DD));
         panel.add(resultsArea);
+
+        matchArea = new JTextArea();
+        matchArea.setEditable(false);
+        matchArea.setBounds(20, 365, 384, 50);
+        matchArea.setBackground(Color.BLUE);
+        panel.add(matchArea);
+
+        readyButton = new JButton("We're ready!");
+        readyButton.setBounds(290, 460, 120, 30);
+        readyButton.setBackground(new Color(0x5C3420));
+        readyButton.setForeground(Color.WHITE);
+        readyButton.setFont(new Font("Arial", Font.ITALIC, 12));
+        readyButton.addActionListener(this::actionPerformedReady);
+        panel.add(readyButton);
     
         return panel;
     } 
@@ -429,7 +443,6 @@ public class VSD_UI_MALE extends JFrame implements ActionListener {
             }
         }
     }
-    
 
     private void showErrorDialog(String message) {
         JOptionPane optionPane = new JOptionPane(message, JOptionPane.ERROR_MESSAGE);
@@ -437,6 +450,25 @@ public class VSD_UI_MALE extends JFrame implements ActionListener {
         dialog.setVisible(true);
     }
 
+    public void actionPerformedReady(ActionEvent e) {
+        if (e.getSource() == readyButton) {
+            if (clickedPanels.isEmpty()) {
+                showErrorDialog("Select your routine first!");
+            }
+                //Use else if statement for this
+                //Condition = If the results match with the possible outputs, then show
+                //this code:
+                //SwingUtilities.invokeLater(() -> {
+                //new Success().setVisible(true);
+                //});
+
+                //Else statement
+                //If the results does not match, show this code:
+                //SwingUtilities.invokeLater(() -> {
+                //new NoMatch().setVisible(true);
+                //});
+        }
+    }
 
     private void togglePanelState(JPanel panel) {
         if (clickedPanels.contains(panel)) {
@@ -444,17 +476,12 @@ public class VSD_UI_MALE extends JFrame implements ActionListener {
             
         } else {
             clickedPanels.add(panel);
-        }
-            
+        } 
     }
 
     private boolean isPanelClicked(JPanel panel) {
         return clickedPanels.contains(panel);
     }
-
-    
-
-    
 
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {
