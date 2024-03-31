@@ -28,7 +28,7 @@ public class Gender extends JFrame implements ActionListener {
     public JPanel contentPanel() {
         JPanel panel = new JPanel(null);
         panel.setBounds(0, 0, 1280, 720);
-        panel.setBackground(new Color(0x5C3420));
+        panel.setBackground(new Color(0xEFE7DD));
 
         add(optionHeading());
         add(optionChoices());
@@ -38,7 +38,7 @@ public class Gender extends JFrame implements ActionListener {
 
     public JPanel headerPanel() {
         JPanel panel = new JPanel(null);
-        panel.setSize(1280, 60);
+        panel.setSize(1280, 70);
         panel.setBackground(new Color(0x5C3420));
 
         headerLabel = new JLabel("Getting Dressed for School");
