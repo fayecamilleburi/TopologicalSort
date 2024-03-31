@@ -1,4 +1,4 @@
-package machine;
+// package machine;
 
 import java.awt.*;
 import java.awt.event.*;
@@ -6,12 +6,10 @@ import java.util.ArrayList;
 import javax.swing.*;
 
 public class VSD_UI_FEMALE extends JFrame implements ActionListener {
-    // private JFrame frame;
-    // private JPanel topPanel, UDPanel, socksPanel, uTopPanel, uBotPanel, shoesPanel, IDPanel, accPanel, goPanel;
     private JLabel topLabel, UDLabel, socksLabel, uTopLabel, uBotLabel, shoesLabel, IDLabel, accPLabel, goLabel;
     private JLabel headerLabel;
-    private JTextArea resultsArea;
-    private JButton backButton, exitButton, submitButton;
+    private JTextArea resultsArea, matchArea;
+    private JButton backButton, exitButton, submitButton, readyButton;
     private ArrayList<JPanel> clickedPanels;
     private JPanel[] panelsArray2 = new JPanel[9];
 
@@ -100,8 +98,6 @@ public class VSD_UI_FEMALE extends JFrame implements ActionListener {
         panel.add(itemPanel());
         panel.add(resultsPanel());
         
-        // panel.add(submitPanel());
-        // panel.add(algoPanel());
         return panel;
     }
 
@@ -150,7 +146,6 @@ public class VSD_UI_FEMALE extends JFrame implements ActionListener {
         return panel;
     }
 
-
     public JPanel itemPanel() {
         JPanel panel = new JPanel(null);
         panel.setBounds(360, 10, 470, 580);
@@ -182,18 +177,6 @@ public class VSD_UI_FEMALE extends JFrame implements ActionListener {
         
         panelsArray2[8] = goPanel();
         panel.add(panelsArray2[8]);
-
-
-
-        // panel.add(topPanel());
-        // panel.add(UDPanel());
-        // panel.add(socksPanel());
-        // panel.add(uTopPanel());
-        // panel.add(uBotPanel());
-        // panel.add(shoesPanel());
-        // panel.add(IDPanel());
-        // panel.add(accPanel());
-        // panel.add(goPanel());
 
         submitButton = new JButton("Submit");
         submitButton.setBounds(360, 460, 100, 30);
@@ -405,6 +388,20 @@ public class VSD_UI_FEMALE extends JFrame implements ActionListener {
         resultsArea.setBounds(20, 80, 384, 275);
         resultsArea.setBackground(new Color(0xEFE7DD));
         panel.add(resultsArea);
+
+        matchArea = new JTextArea();
+        matchArea.setEditable(false);
+        matchArea.setBounds(20, 365, 384, 50);
+        matchArea.setBackground(Color.BLUE);
+        panel.add(matchArea);
+
+        readyButton = new JButton("We're ready!");
+        readyButton.setBounds(290, 460, 120, 30);
+        readyButton.setBackground(new Color(0x5C3420));
+        readyButton.setForeground(Color.WHITE);
+        readyButton.setFont(new Font("Arial", Font.ITALIC, 12));
+        readyButton.addActionListener(this::actionPerformedReady);
+        panel.add(readyButton);
     
         return panel;
     } 
@@ -441,7 +438,6 @@ public class VSD_UI_FEMALE extends JFrame implements ActionListener {
             }
         }
     }
-    
 
     private void showErrorDialog(String message) {
         JOptionPane optionPane = new JOptionPane(message, JOptionPane.ERROR_MESSAGE);
@@ -449,6 +445,25 @@ public class VSD_UI_FEMALE extends JFrame implements ActionListener {
         dialog.setVisible(true);
     }
 
+    public void actionPerformedReady(ActionEvent e) {
+        if (e.getSource() == readyButton) {
+            if (clickedPanels.isEmpty()) {
+                showErrorDialog("Select your routine first!");
+            }
+                //Use else if statement for this
+                //Condition = If the results match with the possible outputs, then show
+                //this code:
+                //SwingUtilities.invokeLater(() -> {
+                //new Success().setVisible(true);
+                //});
+
+                //Else statement
+                //If the results does not match, show this code:
+                //SwingUtilities.invokeLater(() -> {
+                //new NoMatch().setVisible(true);
+                //});
+        }
+    }
 
     private void togglePanelState(JPanel panel) {
         if (clickedPanels.contains(panel)) {
@@ -463,10 +478,6 @@ public class VSD_UI_FEMALE extends JFrame implements ActionListener {
     private boolean isPanelClicked(JPanel panel) {
         return clickedPanels.contains(panel);
     }
-
-    
-
-    
 
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {
