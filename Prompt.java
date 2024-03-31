@@ -134,7 +134,7 @@ public class Prompt extends JFrame implements ActionListener {
         panel.add(nameField);
 
         JLabel subtext = new JLabel("Enter your name");
-        subtext.setBounds(0, 295, 1200, 12);
+        subtext.setBounds(0, 295, 1200, 14);
         subtext.setForeground(new Color(0x764B36));
         subtext.setFont(new Font("Arial", Font.ITALIC, 12));
         subtext.setHorizontalAlignment(JLabel.CENTER);
