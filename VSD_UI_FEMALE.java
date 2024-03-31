@@ -437,7 +437,7 @@ public class VSD_UI_FEMALE extends JFrame implements ActionListener {
             if (panelIndex != -1) {
                 JLabel label = (JLabel) panel.getComponent(0); // Assuming the JLabel is the first component
                 String panelText = label.getText();
-                resultsArea.append(panelIndex+1 + ". " + panelText + "\n");
+                resultsArea.append(panelIndex + ". " + panelText + "\n");
             }
         }
     }
