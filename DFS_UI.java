@@ -177,7 +177,7 @@ public class DFS_UI extends JFrame implements ActionListener {
         panel.add(panelsArray[6]);
 
         clearButton = new JButton("Clear");
-        clearButton.setBounds(10, 460, 100, 30);
+        clearButton.setBounds(250, 460, 100, 30);
         clearButton.setBackground(new Color(0x5C3420));
         clearButton.setForeground(Color.WHITE);
         clearButton.setFont(new Font("Arial", Font.BOLD, 12));
