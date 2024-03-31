@@ -60,6 +60,7 @@ public class Prompt extends JFrame implements ActionListener {
         tutorialButton.setBackground(new Color(0x9B4922));
         tutorialButton.setForeground(Color.WHITE);
         tutorialButton.setFont(new Font("Arial", Font.BOLD, 12));
+        tutorialButton.setFocusable(false);
         tutorialButton.addActionListener(this::actionPerformedTutorial);
         panel.add(tutorialButton);
 
@@ -68,6 +69,7 @@ public class Prompt extends JFrame implements ActionListener {
         startButton.setBackground(new Color(0x5C3420));
         startButton.setForeground(Color.WHITE);
         startButton.setFont(new Font("Arial", Font.BOLD, 12));
+        startButton.setFocusable(false);
         startButton.addActionListener(this);
         panel.add(startButton);
 
@@ -76,6 +78,7 @@ public class Prompt extends JFrame implements ActionListener {
         creditsButton.setBackground(new Color(0x9B4922));
         creditsButton.setForeground(Color.WHITE);
         creditsButton.setFont(new Font("Arial", Font.BOLD, 12));
+        creditsButton.setFocusable(false);
         creditsButton.addActionListener(this::actionPerformedCredits);
         panel.add(creditsButton);
 
@@ -122,14 +125,15 @@ public class Prompt extends JFrame implements ActionListener {
         panel.add(heading);
 
         nameField = new JTextField();
+        nameField.setFont(new Font("Arial", Font.PLAIN, 14));
         nameField.setBounds(350, 270, 500, 20);
-        nameField.setForeground(Color.WHITE);
+        nameField.setForeground(new Color(0xEFE7DD));
         nameField.setBackground(new Color(0x9B4922));
         nameField.setHorizontalAlignment(JTextField.CENTER);
         panel.add(nameField);
 
         JLabel subtext = new JLabel("Enter your name");
-        subtext.setBounds(0, 290, 1200, 12);
+        subtext.setBounds(0, 295, 1200, 14);
         subtext.setForeground(new Color(0x764B36));
         subtext.setFont(new Font("Arial", Font.ITALIC, 12));
         subtext.setHorizontalAlignment(JLabel.CENTER);
@@ -140,6 +144,7 @@ public class Prompt extends JFrame implements ActionListener {
         enterButton.setBackground(new Color(0x5C3420));
         enterButton.setForeground(Color.WHITE);
         enterButton.setFont(new Font("Arial", Font.BOLD, 12));
+        enterButton.setFocusable(false);
         enterButton.addActionListener(this::actionPerformedEnter);
         panel.add(enterButton);
 
@@ -183,13 +188,17 @@ public class Prompt extends JFrame implements ActionListener {
 
     public void actionPerformedTutorial(ActionEvent e) {
         if (e.getSource() == tutorialButton) {
-            // Code goes here...
+            SwingUtilities.invokeLater(() -> {
+                new Tutorial().setVisible(true);
+            });
         }
     }
 
     public void actionPerformedCredits(ActionEvent e) {
         if (e.getSource() == creditsButton) {
-            // Code goes here...
+            SwingUtilities.invokeLater(() -> {
+                new Credits().setVisible(true);
+            });
         }
     }
 
