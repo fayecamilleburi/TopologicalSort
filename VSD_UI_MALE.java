@@ -3,6 +3,8 @@
 import java.awt.*;
 import java.awt.event.*;
 import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
 import javax.swing.*;
 
 public class VSD_UI_MALE extends JFrame implements ActionListener {
@@ -12,6 +14,7 @@ public class VSD_UI_MALE extends JFrame implements ActionListener {
     private JButton backButton, exitButton, submitButton, readyButton;
     private ArrayList<JPanel> clickedPanels;
     private JPanel[] panelsArray2 = new JPanel[9];
+    private LinkedList<Integer>order = new LinkedList<>(); // Added by jim. Used to store panel index for order checking
 
     public VSD_UI_MALE() {
         initComponents();
@@ -409,7 +412,21 @@ public class VSD_UI_MALE extends JFrame implements ActionListener {
         panel.add(readyButton);
     
         return panel;
-    } 
+    }
+    
+    // Added by jim. Method for converting linked list into string
+    public static String linkedListToString(LinkedList<Integer> linkedList) { 
+        StringBuilder sb = new StringBuilder();
+
+        for (int i = 0; i < linkedList.size(); i++) {
+            sb.append(linkedList.get(i));
+            if (i < linkedList.size() - 1) {
+                sb.append(" ");
+            }
+        }
+
+        return sb.toString();
+    }
 
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == submitButton) {
@@ -417,15 +434,18 @@ public class VSD_UI_MALE extends JFrame implements ActionListener {
                 showErrorDialog("Make sure all panels are visited.");
             } else {
                 displayClickedPanels();
+                orderChecking();
             }
         }
     }
 
     private void displayClickedPanels() {
+        resultsArea.setText("\n"); // Clear the resultsArea JTextArea before printing
+        
         resultsArea.setFont(new Font("Arial", Font.PLAIN, 25));
         resultsArea.setForeground(new Color(0x5C3420));
 
-        // Print the contents of clickedPanels to submitOutput with indices
+        // Print the contents of clickedPanels to resultsArea with indices
         for (int i = 0; i < clickedPanels.size(); i++) {
             JPanel panel = clickedPanels.get(i);
             // Find the index of the panel in the panelsArray
@@ -433,14 +453,58 @@ public class VSD_UI_MALE extends JFrame implements ActionListener {
             for (int j = 0; j < panelsArray2.length; j++) {
                 if (panel == panelsArray2[j]) {
                     panelIndex = j;
+                    order.add(j); // Added by jim. Add the value of j to linked list that will store the order
                     break;
                 }
             }
             if (panelIndex != -1) {
                 JLabel label = (JLabel) panel.getComponent(0); // Assuming the JLabel is the first component
                 String panelText = label.getText();
-                resultsArea.append(panelIndex + ". " + panelText + "\n");
+                int index =  panelIndex + 1; // Added by jim. Index will be used instead for better user readablity
+                resultsArea.append(index + ". " + panelText + "\n");
             }
+        }
+    }
+
+    // Added by jim. Method for checking the given order from the list of possible sorts
+    private void orderChecking(){
+        String result = linkedListToString(order); //To be used for comparing to list of possible orders
+        
+        // ---------- Topological Sort using VSD ----------
+        // Create a graph for steps to get dressed for school
+        TopologicalSort_VSD graph = new TopologicalSort_VSD(9);
+        graph.addEdge(0, 3);
+        graph.addEdge(1, 4);
+        graph.addEdge(2, 5);
+        graph.addEdge(3, 6);
+        graph.addEdge(4, 7);
+        graph.addEdge(5, 8);
+        graph.addEdge(6, 8);
+        graph.addEdge(7, 8);
+
+        // Performs Topological Sort using DFS and stores all possible orders in list
+        List<List<Integer>> allOrders = graph.topologicalSortVariableSizeDecrease();
+        boolean foundMatch = false;
+
+        matchArea.setText("\n"); // Clear the matchArea JTextArea before printing
+        matchArea.setFont(new Font("Arial", Font.PLAIN, 25));
+        matchArea.setForeground(new Color(0x5C3420));
+
+        for (List<Integer> order : allOrders) {
+            StringBuilder sb = new StringBuilder();
+            for (int vertex : order) {
+                sb.append(vertex).append(" ");
+            }
+            String currentSortString = sb.toString().trim();
+            if (result.equals(currentSortString)) {
+                matchArea.setText("I can do that");
+                foundMatch = true;
+                break; // No need to continue searching
+            }
+        }
+
+        if (!foundMatch) {
+            matchArea.setText("Oops!");
         }
     }
 
@@ -455,18 +519,18 @@ public class VSD_UI_MALE extends JFrame implements ActionListener {
             if (clickedPanels.isEmpty()) {
                 showErrorDialog("Select your routine first!");
             }
-                //Use else if statement for this
-                //Condition = If the results match with the possible outputs, then show
-                //this code:
-                //SwingUtilities.invokeLater(() -> {
-                //new Success().setVisible(true);
-                //});
+            
+            else if(matchArea.getText().equals("I can do that")){
+                SwingUtilities.invokeLater(() -> {
+                new Success().setVisible(true);
+                });
+            }
 
-                //Else statement
-                //If the results does not match, show this code:
-                //SwingUtilities.invokeLater(() -> {
-                //new NoMatch().setVisible(true);
-                //});
+            else if(matchArea.getText().equals("Oops!")){
+                SwingUtilities.invokeLater(() -> {
+                new NoMatch().setVisible(true);
+                });
+            }
         }
     }
 
