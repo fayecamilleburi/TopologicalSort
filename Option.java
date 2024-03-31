@@ -1,4 +1,4 @@
-// package machine;
+//package machine;
 
 import java.awt.*;
 import java.awt.event.*;
@@ -102,8 +102,16 @@ public class Option extends JPanel implements ActionListener {
     }
 
     public void actionPerformedTwo(ActionEvent e) {
-        if (e.getSource() == optionTwo) {
-            // Code goes here...
+        if (e.getSource() == optionOne) {
+            Window window = SwingUtilities.getWindowAncestor(this);
+
+            if (window != null) {
+            window.dispose();
+            }
+
+            SwingUtilities.invokeLater(() -> {
+                new Gender().setVisible(true);
+            });
         }
     }
     
