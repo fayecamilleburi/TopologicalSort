@@ -7,7 +7,7 @@ import javax.swing.*;
 public class Gender extends JFrame implements ActionListener {
     private JButton optionOne, optionTwo;
     private JLabel headerLabel;
-    private JButton backButton;
+    private JButton backButton, exitButton;
 
     public Gender() {
         initComponents();
@@ -62,6 +62,13 @@ public class Gender extends JFrame implements ActionListener {
         backButton.addActionListener(this::actionPerformedBack);
         panel.add(backButton);
 
+        exitButton = new JButton("Exit");
+        exitButton.setBounds(1152, 20, 100, 40);
+        exitButton.setBackground(new Color(0x9B4922));
+        exitButton.setForeground(Color.WHITE);
+        exitButton.addActionListener(this::actionPerformedExit);
+        panel.add(exitButton);
+
         
         return panel;
     }
@@ -93,6 +100,12 @@ public class Gender extends JFrame implements ActionListener {
             SwingUtilities.invokeLater(() -> {
                 new Choices().setVisible(true);
             });
+        }
+    }
+
+    public void actionPerformedExit(ActionEvent e) {
+        if (e.getSource() == exitButton) {
+            
         }
     }
 
