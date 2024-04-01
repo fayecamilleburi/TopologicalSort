@@ -94,7 +94,6 @@ public class Tutorial extends JFrame implements ActionListener {
                            + "This area inscibes the<br>"
                            + "problem description.</div></html>";
 
-
         JLabel content = new JLabel(htmlContent);
         content.setBounds(0, 120, 350, 200);
         content.setForeground(new Color(0x764B36));
@@ -113,7 +112,6 @@ public class Tutorial extends JFrame implements ActionListener {
                     + "applicable based on Topological Sorting,<br>"
                     + "“I can...” text will appear. To finish, click<br>"
                     + "'We're Ready!'.</div></html>";                        
-                
 
         JLabel subtext = new JLabel(note);
         subtext.setBounds(0, 310, 350, 200);
@@ -314,7 +312,6 @@ public class Tutorial extends JFrame implements ActionListener {
         panel.add(labelFive);
 
         return panel;
-
     }
 
     public JPanel nodeSix() {
@@ -422,14 +419,12 @@ public class Tutorial extends JFrame implements ActionListener {
             }
         }
     }
-   
 
     private void displayClickedPanels() {
         resultsArea.setText(""); 
         resultsArea.setFont(new Font("Arial", Font.PLAIN, 25));
         resultsArea.setForeground(new Color(0x5C3420));
 
-       
         for (int i = 0; i < clickedPanels.size(); i++) {
             JPanel panel = clickedPanels.get(i);
             
