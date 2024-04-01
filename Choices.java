@@ -60,12 +60,12 @@ public class Choices extends JFrame implements ActionListener {
         JLabel intro = new JLabel("Get Ready With Me to");
         intro.setBounds(0, 15, 1200, 30);
         intro.setForeground(new Color(0x9B4922));
-        intro.setFont(new Font("Arial", Font.PLAIN, 30));
+        intro.setFont(new Font("Arial", Font.ITALIC, 30));
         intro.setHorizontalAlignment(JLabel.CENTER);
         panel.add(intro);
 
         optionOne = new JButton("Prepare for School");
-        optionOne.setBounds(375, 60, 200, 80);
+        optionOne.setBounds(375, 70, 195, 50);
         optionOne.setBackground(new Color(0x5C3420));
         optionOne.setForeground(Color.WHITE);
         optionOne.setFont(new Font("Arial", Font.BOLD, 13));
@@ -74,14 +74,14 @@ public class Choices extends JFrame implements ActionListener {
         panel.add(optionOne);
 
         JLabel or = new JLabel("or");
-        or.setBounds(575, 80, 50, 50);
+        or.setBounds(575, 70, 50, 50);
         or.setForeground(new Color(0x9B4922));
-        or.setFont(new Font("Arial", Font.PLAIN, 30));
+        or.setFont(new Font("Arial", Font.ITALIC, 30));
         or.setHorizontalAlignment(JLabel.CENTER);
         panel.add(or);
 
         optionTwo = new JButton("Get Dressed");
-        optionTwo.setBounds(630, 60, 200, 80);
+        optionTwo.setBounds(635, 70, 195, 50);
         optionTwo.setBackground(new Color(0x5C3420));
         optionTwo.setForeground(Color.WHITE);
         optionTwo.setFont(new Font("Arial", Font.BOLD, 13));
@@ -94,21 +94,25 @@ public class Choices extends JFrame implements ActionListener {
 
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == optionOne) {
-            dispose();
+            
 
             SwingUtilities.invokeLater(() -> {
                 new DFS_UI().setVisible(true);
             });
+
+            dispose();
         }
     }
 
     public void actionPerformedTwo(ActionEvent e) {
         if (e.getSource() == optionTwo) {
-            dispose();
+            
 
             SwingUtilities.invokeLater(() -> {
                 new Gender().setVisible(true);
             });
+
+            dispose();
         }
     }
 
