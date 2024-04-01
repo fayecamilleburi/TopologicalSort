@@ -6,7 +6,6 @@ import javax.swing.*;
 
 public class Gender extends JFrame implements ActionListener {
     private JButton optionOne, optionTwo;
-    private JLabel headerLabel;
     private JButton backButton, exitButton;
 
     public Gender() {
@@ -27,10 +26,9 @@ public class Gender extends JFrame implements ActionListener {
 
     public JPanel contentPanel() {
         JPanel panel = new JPanel(null);
-        panel.setBounds(0, 0, 1280, 720);
+        panel.setBounds(0, 80, 1280, 640);
         panel.setBackground(new Color(0xEFE7DD));
-
-        add(optionHeading());
+        
         add(optionChoices());
 
         return panel;
@@ -38,17 +36,17 @@ public class Gender extends JFrame implements ActionListener {
 
     public JPanel headerPanel() {
         JPanel panel = new JPanel(null);
-        panel.setSize(1280, 70);
+        panel.setSize(1280, 80);
         panel.setBackground(new Color(0x5C3420));
 
-        headerLabel = new JLabel("Getting Dressed for School");
-        headerLabel.setBounds(0, 13, 1280, 30);
-        headerLabel.setForeground(Color.WHITE);
-        headerLabel.setFont(new Font("Arial", Font.BOLD, 25));
-        headerLabel.setHorizontalAlignment(JLabel.CENTER);
-        panel.add(headerLabel);
+        JLabel header = new JLabel("Getting Dressed for School");
+        header.setBounds(0, 15, 1280, 30);
+        header.setForeground(Color.WHITE);
+        header.setFont(new Font("Arial", Font.BOLD, 25));
+        header.setHorizontalAlignment(JLabel.CENTER);
+        panel.add(header);
 
-        JLabel subtext = new JLabel("using Variable-Size Decrease");
+        JLabel subtext = new JLabel("using Variable-Size-Decrease");
         subtext.setBounds(0, 43, 1280, 20);
         subtext.setForeground(Color.WHITE);
         subtext.setFont(new Font("Arial", Font.ITALIC, 12));
@@ -56,41 +54,22 @@ public class Gender extends JFrame implements ActionListener {
         panel.add(subtext);
 
         backButton = new JButton("Back");
-        backButton.setBounds(20, 15, 100, 40);
+        backButton.setBounds(20, 20, 100, 40);
         backButton.setBackground(new Color(0x9B4922));
         backButton.setForeground(Color.WHITE);
-        backButton.setFocusable(false);
         backButton.addActionListener(this::actionPerformedBack);
+        backButton.setFocusable(false);
         panel.add(backButton);
 
         exitButton = new JButton("Exit");
-        exitButton.setBounds(1150, 15, 100, 40);
+        exitButton.setBounds(1150, 20, 100, 40);
         exitButton.setBackground(new Color(0x9B4922));
         exitButton.setForeground(Color.WHITE);
-        exitButton.setFocusable(false);
         exitButton.addActionListener(this::actionPerformedExit);
+        exitButton.setFocusable(false);
         panel.add(exitButton);
 
         
-        return panel;
-    }
-
-    public JPanel optionHeading() {
-        JPanel panel = new JPanel(new GridBagLayout());
-        panel.setBounds(30, 40, 1200, 260);
-        panel.setBackground(new Color(0xEFE7DD));
-
-        JLabel greetings = new JLabel("Select Gender:");
-        greetings.setForeground(new Color(0x9B4922));
-        greetings.setFont(new Font("Arial", Font.ITALIC, 30));
-    
-        GridBagConstraints gbc = new GridBagConstraints();
-        gbc.gridx = 0;
-        gbc.gridy = 0; // Start at the top
-        gbc.weighty = 1; // Add vertical space to push it to the bottom
-        gbc.anchor = GridBagConstraints.PAGE_END; // Align at the bottom
-        panel.add(greetings, gbc);
-
         return panel;
     }
 
@@ -114,13 +93,18 @@ public class Gender extends JFrame implements ActionListener {
 
     public JPanel optionChoices() {
         JPanel panel = new JPanel(null);
-        panel.setBounds(30, 290, 1200, 360);
+        panel.setBounds(30, 230, 1200, 360);
         panel.setBackground(new Color(0xEFE7DD));
 
-        
+        JLabel intro = new JLabel("Select Gender");
+        intro.setBounds(0, 10, 1200, 30);
+        intro.setForeground(new Color(0x9B4922));
+        intro.setFont(new Font("Arial", Font.ITALIC, 30));
+        intro.setHorizontalAlignment(JLabel.CENTER);
+        panel.add(intro);
 
         optionOne = new JButton("Male");
-        optionOne.setBounds(375, 30, 195, 50);
+        optionOne.setBounds(375, 70, 195, 50);
         optionOne.setBackground(new Color(0x5C3420));
         optionOne.setForeground(Color.WHITE);
         optionOne.setFont(new Font("Arial", Font.BOLD, 13));
@@ -129,14 +113,14 @@ public class Gender extends JFrame implements ActionListener {
         panel.add(optionOne);
 
         JLabel or = new JLabel("or");
-        or.setBounds(575, 30, 50, 50);
+        or.setBounds(575, 70, 50, 50);
         or.setForeground(new Color(0x9B4922));
         or.setFont(new Font("Arial", Font.ITALIC, 30));
         or.setHorizontalAlignment(JLabel.CENTER);
         panel.add(or);
 
         optionTwo = new JButton("Female");
-        optionTwo.setBounds(635, 30, 195, 50);
+        optionTwo.setBounds(635, 70, 195, 50);
         optionTwo.setBackground(new Color(0x5C3420));
         optionTwo.setForeground(Color.WHITE);
         optionTwo.setFont(new Font("Arial", Font.BOLD, 13));
