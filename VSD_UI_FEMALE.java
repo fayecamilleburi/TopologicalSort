@@ -1,5 +1,3 @@
-// package machine;
-
 import java.awt.*;
 import java.awt.event.*;
 import java.util.ArrayList;
@@ -14,8 +12,7 @@ public class VSD_UI_FEMALE extends JFrame implements ActionListener {
     private JButton backButton, exitButton, submitButton, readyButton, clearButton;
     private ArrayList<JPanel> clickedPanels;
     private JPanel[] panelsArray2 = new JPanel[9];
-    private LinkedList<Integer>order = new LinkedList<>(); // Added by jim. Used to store panel index for order checking
-
+    private LinkedList<Integer>order = new LinkedList<>();
     public VSD_UI_FEMALE() {
         initComponents();
         clickedPanels = new ArrayList<>();
@@ -398,7 +395,7 @@ public class VSD_UI_FEMALE extends JFrame implements ActionListener {
         goLabel = new JLabel("Face Mask");
         goLabel.setBounds(0, 0, 450, 90);
         goLabel.setForeground(Color.WHITE);
-        goLabel.setFont(new Font("Arial", Font.BOLD, 15));
+        goLabel.setFont(new Font("Arial", Font.PLAIN, 15));
         goLabel.setHorizontalAlignment(JLabel.CENTER);
         panel.add(goLabel);
         return panel;
@@ -457,7 +454,7 @@ public class VSD_UI_FEMALE extends JFrame implements ActionListener {
 
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == submitButton) {
-            if (clickedPanels == null || clickedPanels.size() < 9) {
+            if (clickedPanels == null || clickedPanels.size() < 7) {
                 showErrorDialog("Make sure all panels are visited.");
             } else {
                 displayClickedPanels();
@@ -481,37 +478,33 @@ public class VSD_UI_FEMALE extends JFrame implements ActionListener {
     }
 
     private void displayClickedPanels() {
-        resultsArea.setText(""); // Clear the resultsArea JTextArea before printing
+        resultsArea.setText(""); 
 
         resultsArea.setFont(new Font("Arial", Font.PLAIN, 25));
         resultsArea.setForeground(new Color(0x5C3420));
 
-        // Print the contents of clickedPanels to resultsArea with indices
         for (int i = 0; i < clickedPanels.size(); i++) {
             JPanel panel = clickedPanels.get(i);
-            // Find the index of the panel in the panelsArray
+         
             int panelIndex = -1;
             for (int j = 0; j < panelsArray2.length; j++) {
                 if (panel == panelsArray2[j]) {
                     panelIndex = j;
-                    order.add(j); // Added by jim. Add the value of j to linked list that will store the order
+                    order.add(j); 
                     break;
                 }
             }
             if (panelIndex != -1) {
-                JLabel label = (JLabel) panel.getComponent(0); // Assuming the JLabel is the first component
+                JLabel label = (JLabel) panel.getComponent(0); 
                 String panelText = label.getText();
                 resultsArea.append(panelText + "\n");
             }
         }
     }
 
-    // Added by jim. Method for checking the given order from the list of possible sorts
     private void orderChecking(){
-        String result = linkedListToString(order); //To be used for comparing to list of possible orders
+        String result = linkedListToString(order); 
         
-        // ---------- Topological Sort using VSD ----------
-        // Create a graph for steps to get dressed for school
         TopologicalSort_VSD graph = new TopologicalSort_VSD(9);
         graph.addEdge(0, 3);
         graph.addEdge(1, 4);
@@ -522,7 +515,6 @@ public class VSD_UI_FEMALE extends JFrame implements ActionListener {
         graph.addEdge(6, 7);
         graph.addEdge(7, 8);
 
-        // Performs Topological Sort using DFS and stores all possible orders in list
         List<List<Integer>> allOrders = graph.topologicalSortVariableSizeDecrease();
         boolean foundMatch = false;
 
@@ -530,9 +522,9 @@ public class VSD_UI_FEMALE extends JFrame implements ActionListener {
         matchArea.setFont(new Font("Arial", Font.BOLD, 30));
         matchArea.setForeground(new Color(0x9B4922));
 
-        for (List<Integer> order : allOrders) {
+        for (List<Integer> or : allOrders) {
             StringBuilder sb = new StringBuilder();
-            for (int vertex : order) {
+            for (int vertex : or) {
                 sb.append(vertex).append(" ");
             }
             String currentSortString = sb.toString().trim();
@@ -540,7 +532,7 @@ public class VSD_UI_FEMALE extends JFrame implements ActionListener {
                 matchArea.setText("I can wear that!");
                 foundMatch = true;
                 order.clear();
-                break; // No need to continue searching
+                break; 
             }
         }
 
