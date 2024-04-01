@@ -1,4 +1,4 @@
-// package machine;
+//package machine;
 
 import java.awt.*;
 import java.awt.event.*;
@@ -140,6 +140,7 @@ public class Prompt extends JFrame implements ActionListener {
         panel.add(subtext);
 
         enterButton = new JButton("Enter");
+        this.getRootPane().setDefaultButton(enterButton);
         enterButton.setBounds(550, 332, 100, 30);
         enterButton.setBackground(new Color(0x5C3420));
         enterButton.setForeground(Color.WHITE);
@@ -152,7 +153,7 @@ public class Prompt extends JFrame implements ActionListener {
     }
 
     public void actionPerformedEnter(ActionEvent e) {
-        if (e.getSource() == enterButton) {
+        if (e.getSource() == enterButton ) {
             name = capitalizeFirstLetter(nameField.getText().trim());
 
             if (name.trim().isEmpty()) {
