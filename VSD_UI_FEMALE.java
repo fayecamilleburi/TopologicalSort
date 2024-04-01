@@ -395,8 +395,7 @@ public class VSD_UI_FEMALE extends JFrame implements ActionListener {
                 panel.setBackground(isPanelClicked(panel) ? new Color(0x9B4922) : new Color(0x764B36));
             }
         });
-        //String htmlContent = "Ready to go to School!";
-        goLabel = new JLabel("Confident Smile");
+        goLabel = new JLabel("Face Mask");
         goLabel.setBounds(0, 0, 450, 90);
         goLabel.setForeground(Color.WHITE);
         goLabel.setFont(new Font("Arial", Font.BOLD, 15));
@@ -502,8 +501,7 @@ public class VSD_UI_FEMALE extends JFrame implements ActionListener {
             if (panelIndex != -1) {
                 JLabel label = (JLabel) panel.getComponent(0); // Assuming the JLabel is the first component
                 String panelText = label.getText();
-                int index =  panelIndex + 1; // Added by jim. Index will be used instead for better user readablity
-                resultsArea.append(index + ". " + panelText + "\n");
+                resultsArea.append(panelText + "\n");
             }
         }
     }
@@ -539,7 +537,7 @@ public class VSD_UI_FEMALE extends JFrame implements ActionListener {
             }
             String currentSortString = sb.toString().trim();
             if (result.equals(currentSortString)) {
-                matchArea.setText("I can do that!");
+                matchArea.setText("I can wear that!");
                 foundMatch = true;
                 order.clear();
                 break; // No need to continue searching
@@ -564,7 +562,7 @@ public class VSD_UI_FEMALE extends JFrame implements ActionListener {
                 showErrorDialog("Select your clothings first.");
             }
             
-            else if(matchArea.getText().equals("I can do that!")){
+            else if(matchArea.getText().equals("I can wear that!")){
                 SwingUtilities.invokeLater(() -> {
                 new Winner().setVisible(true);
                 });

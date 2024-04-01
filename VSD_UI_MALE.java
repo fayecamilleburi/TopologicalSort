@@ -393,8 +393,7 @@ public class VSD_UI_MALE extends JFrame implements ActionListener {
                 panel.setBackground(isPanelClicked(panel) ? new Color(0x9B4922) : new Color(0x764B36));
             }
         });
-        //String htmlContent = "Ready to go to School!";
-        goLabel = new JLabel("Confident Smile");
+        goLabel = new JLabel("Face Mask");
         goLabel.setBounds(0, 0, 450, 90);
         goLabel.setForeground(Color.WHITE);
         goLabel.setFont(new Font("Arial", Font.BOLD, 15));
@@ -499,8 +498,7 @@ public class VSD_UI_MALE extends JFrame implements ActionListener {
             if (panelIndex != -1) {
                 JLabel label = (JLabel) panel.getComponent(0); 
                 String panelText = label.getText();
-                int index =  panelIndex + 1; 
-                resultsArea.append(index + ". " + panelText + "\n");
+                resultsArea.append(panelText + "\n");
             }
         }
     }

@@ -471,8 +471,7 @@ public class DFS_UI extends JFrame implements ActionListener {
             if (panelIndex != -1) {
                 JLabel label = (JLabel) panel.getComponent(0); // Assuming the JLabel is the first component
                 String panelText = label.getText();
-                int index =  panelIndex + 1; // Added by jim. Index will be used instead for better user readablity
-                resultsArea.append(index + ". " + panelText + "\n");
+                resultsArea.append(panelText + "\n");
             }
         }
     }
