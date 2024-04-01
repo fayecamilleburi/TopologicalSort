@@ -455,7 +455,7 @@ public class VSD_UI_MALE extends JFrame implements ActionListener {
 
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == submitButton) {
-            if (clickedPanels == null || clickedPanels.size() < 7) {
+            if (clickedPanels == null || clickedPanels.size() < 9) {
                 showErrorDialog("Make sure all panels are visited.");
             } else {
                 displayClickedPanels();
