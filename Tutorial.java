@@ -1,4 +1,3 @@
-//package machine;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.ArrayList;
@@ -9,7 +8,7 @@ import javax.swing.*;
 public class Tutorial extends JFrame implements ActionListener {
     private JLabel labelZero, labelOne, labelTwo, labelThree, labelFour, labelFive, labelSix, match;
     private JTextArea resultsArea;
-    private JButton backButton, submitButton, readyButton;
+    private JButton backButton, submitButton, readyButton, clearButton;
     private ArrayList<JPanel> clickedPanels;
     private JPanel[] panelsArray = new JPanel[7];
 
@@ -153,6 +152,15 @@ public class Tutorial extends JFrame implements ActionListener {
         panelsArray[6] = nodeSix();
         panel.add(panelsArray[6]);
 
+        clearButton = new JButton("Clear");
+        clearButton.setBounds(250, 460, 100, 30);
+        clearButton.setBackground(new Color(0x5C3420));
+        clearButton.setForeground(Color.WHITE);
+        clearButton.setFont(new Font("Arial", Font.BOLD, 12));
+        clearButton.setFocusable(false);
+        clearButton.addActionListener(this);
+        panel.add(clearButton);
+
         submitButton = new JButton("Submit");
         submitButton.setBounds(360, 460, 100, 30);
         submitButton.setBackground(new Color(0x5C3420));
@@ -164,8 +172,6 @@ public class Tutorial extends JFrame implements ActionListener {
 
         return panel;
     }
-
-    
 
     public JPanel nodeZero() {
         JPanel panel = new JPanel(null);
@@ -344,7 +350,7 @@ public class Tutorial extends JFrame implements ActionListener {
         JLabel subheading = new JLabel("My [ ... ] :");
         subheading.setBounds(20, 50, 424, 25);
         subheading.setForeground(new Color(0x764B36));
-        subheading.setFont(new Font("Arial", Font.BOLD, 20));
+        subheading.setFont(new Font("Arial", Font.BOLD, 25));
         panel.add(subheading);
 
         panel.add(resultInstruct());
@@ -362,7 +368,7 @@ public class Tutorial extends JFrame implements ActionListener {
         match.setBounds(20, 365, 384, 50);
         match.setBackground(new Color(0xEFE7DD));
         match.setForeground(new Color(0x9B4922));
-        match.setFont(new Font("Arial", Font.BOLD, 24));
+        match.setFont(new Font("Arial", Font.BOLD, 30));
         match.setHorizontalAlignment(SwingConstants.CENTER);
         panel.add(match);
 
@@ -372,17 +378,10 @@ public class Tutorial extends JFrame implements ActionListener {
         readyButton.setForeground(Color.WHITE);
         readyButton.setFont(new Font("Arial", Font.BOLD | Font.ITALIC, 12));
         readyButton.setFocusable(false);
-        readyButton.addActionListener(this::actionPerformedReady);
         panel.add(readyButton);
     
         return panel;
     }    
-
-    public void actionPerformedReady(ActionEvent e) {
-        if (e.getSource() == readyButton) {
-            dispose();
-        }
-    }
 
     private JLabel resultInstruct(){
         String resultNote= "<html><div style='text-align: center;'>"
@@ -404,18 +403,31 @@ public class Tutorial extends JFrame implements ActionListener {
             if (clickedPanels == null || clickedPanels.size() < 7) {
                 showErrorDialog("Make sure all panels are visited.");
             } else {
-                resultInstruct().setVisible(false);
                 displayClickedPanels();
+            }
+        }
+
+        if (e.getSource() == clearButton) {
+            if (clickedPanels.isEmpty()) {
+                showErrorDialog("You haven't clicked panels!");
+            } else {
+                clickedPanels.clear();
+                for (JPanel panel : panelsArray) {
+                    panel.setBackground(new Color(0x764B36));
+                }
+                resultsArea.setText("");
             }
         }
     }
 
+   
+
     private void displayClickedPanels() {
+        resultsArea.setText(""); // Clear the resultsArea JTextArea before printing
         resultsArea.setFont(new Font("Arial", Font.PLAIN, 25));
         resultsArea.setForeground(new Color(0x5C3420));
-        resultsArea.setText("");
 
-        // Print the contents of clickedPanels to submitOutput with indices
+        // Print the contents of clickedPanels to resultsArea with indices
         for (int i = 0; i < clickedPanels.size(); i++) {
             JPanel panel = clickedPanels.get(i);
             // Find the index of the panel in the panelsArray
@@ -429,7 +441,8 @@ public class Tutorial extends JFrame implements ActionListener {
             if (panelIndex != -1) {
                 JLabel label = (JLabel) panel.getComponent(0); // Assuming the JLabel is the first component
                 String panelText = label.getText();
-                resultsArea.append(panelIndex+1 + ". " + panelText + "\n");
+                int index =  panelIndex + 1; // Added by jim. Index will be used instead for better user readablity
+                resultsArea.append(index + ". " + panelText + "\n");
             }
         }
     }
