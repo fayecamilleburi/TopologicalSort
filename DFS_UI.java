@@ -1,5 +1,3 @@
-//package machine;
-
 import java.awt.*;
 import java.awt.event.*;
 import java.util.ArrayList;
@@ -13,7 +11,7 @@ public class DFS_UI extends JFrame implements ActionListener {
     private JButton backButton, exitButton, submitButton, readyButton, clearButton;
     private ArrayList<JPanel> clickedPanels;
     private JPanel[] panelsArray = new JPanel[7];
-    private LinkedList<Integer>order = new LinkedList<>(); // Added by jim. Used to store panel index for order checking
+    private LinkedList<Integer>order = new LinkedList<>();
 
     public DFS_UI() {
         initComponents();
@@ -211,7 +209,7 @@ public class DFS_UI extends JFrame implements ActionListener {
         panel.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                togglePanelState(panel); // Toggle panel state (add/remove from ArrayList)
+                togglePanelState(panel); 
                 panel.setBackground(isPanelClicked(panel) ? new Color(0x9B4922) : new Color(0x764B36));
             }
         });
@@ -259,7 +257,7 @@ public class DFS_UI extends JFrame implements ActionListener {
         panel.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                togglePanelState(panel); // Toggle panel state (add/remove from ArrayList)
+                togglePanelState(panel);
                 panel.setBackground(isPanelClicked(panel) ? new Color(0x9B4922) : new Color(0x764B36));
             }
         });
@@ -283,7 +281,7 @@ public class DFS_UI extends JFrame implements ActionListener {
         panel.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                togglePanelState(panel); // Toggle panel state (add/remove from ArrayList)
+                togglePanelState(panel);
                 panel.setBackground(isPanelClicked(panel) ? new Color(0x9B4922) : new Color(0x764B36));
             }
         });
@@ -307,7 +305,7 @@ public class DFS_UI extends JFrame implements ActionListener {
         panel.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                togglePanelState(panel); // Toggle panel state (add/remove from ArrayList)
+                togglePanelState(panel);
                 panel.setBackground(isPanelClicked(panel) ? new Color(0x9B4922) : new Color(0x764B36));
             }
         });
@@ -331,7 +329,7 @@ public class DFS_UI extends JFrame implements ActionListener {
         panel.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                togglePanelState(panel); // Toggle panel state (add/remove from ArrayList)
+                togglePanelState(panel); 
                 panel.setBackground(isPanelClicked(panel) ? new Color(0x9B4922) : new Color(0x764B36));
             }
         });
@@ -356,7 +354,7 @@ public class DFS_UI extends JFrame implements ActionListener {
         panel.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                togglePanelState(panel); // Toggle panel state (add/remove from ArrayList)
+                togglePanelState(panel); 
                 panel.setBackground(isPanelClicked(panel) ? new Color(0x9B4922) : new Color(0x764B36));
             }
         });
@@ -410,7 +408,6 @@ public class DFS_UI extends JFrame implements ActionListener {
         return panel;
     }
     
-    // Added by jim. Method for converting linked list into string
     public static String linkedListToString(LinkedList<Integer> linkedList) { 
         StringBuilder sb = new StringBuilder();
 
@@ -449,39 +446,33 @@ public class DFS_UI extends JFrame implements ActionListener {
         }
     }
 
-   
-
     private void displayClickedPanels() {
-        resultsArea.setText(""); // Clear the resultsArea JTextArea before printing
+        resultsArea.setText(""); 
         resultsArea.setFont(new Font("Arial", Font.PLAIN, 25));
         resultsArea.setForeground(new Color(0x5C3420));
 
-        // Print the contents of clickedPanels to resultsArea with indices
         for (int i = 0; i < clickedPanels.size(); i++) {
             JPanel panel = clickedPanels.get(i);
-            // Find the index of the panel in the panelsArray
+           
             int panelIndex = -1;
             for (int j = 0; j < panelsArray.length; j++) {
                 if (panel == panelsArray[j]) {
                     panelIndex = j;
-                    order.add(j); // Added by jim. Add the value of j to linked list that will store the order
+                    order.add(j); 
                     break;
                 }
             }
             if (panelIndex != -1) {
-                JLabel label = (JLabel) panel.getComponent(0); // Assuming the JLabel is the first component
+                JLabel label = (JLabel) panel.getComponent(0); 
                 String panelText = label.getText();
                 resultsArea.append(panelText + "\n");
             }
         }
     }
 
-    // Added by jim. Method for checking the given order from the list of possible sorts
     private void orderChecking(){
-        String result = linkedListToString(order); //To be used for comparing to list of possible orders
-        
-        // ---------- Topological Sort using DFS ----------
-        // Create the graph for steps to prepare for school
+        String result = linkedListToString(order); 
+
         TopologicalSort_DFS graph = new TopologicalSort_DFS(7);
         graph.addEdge(0, 1);
         graph.addEdge(0, 2);
@@ -492,11 +483,10 @@ public class DFS_UI extends JFrame implements ActionListener {
         graph.addEdge(4, 6);
         graph.addEdge(5, 6);
 
-        // Performs Topological Sort using DFS and stores all possible orders in list
         List<List<Integer>> allSorts = graph.topologicalSortDFS(); 
         boolean foundMatch = false;
 
-        matchArea.setText("\n"); // Clear the matchArea JTextArea before printing
+        matchArea.setText("\n");
         matchArea.setFont(new Font("Arial", Font.BOLD, 30));
         matchArea.setForeground(new Color(0x9B4922));
 
@@ -510,7 +500,7 @@ public class DFS_UI extends JFrame implements ActionListener {
                 matchArea.setText("I can do that!");
                 foundMatch = true;
                 order.clear();
-                break; // No need to continue searching
+                break; 
             }
         }
 
