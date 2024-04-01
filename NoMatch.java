@@ -1,4 +1,3 @@
-// This is the final code.
 // package machine;
 
 import java.awt.*;
@@ -18,7 +17,7 @@ public class NoMatch extends JFrame implements ActionListener {
 
         setResizable(false);
         setLocationRelativeTo(null);
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 
         add(mainPanel());
     }
@@ -44,6 +43,7 @@ public class NoMatch extends JFrame implements ActionListener {
         backButton.setBackground(new Color(0x9B4922));
         backButton.setForeground(new Color(0xEFE7DD));
         backButton.setFont(new Font("Arial", Font.BOLD, 12));
+        backButton.setFocusable(false);
         backButton.addActionListener(this::actionPerformedBack);
         panel.add(backButton);
 
@@ -52,7 +52,8 @@ public class NoMatch extends JFrame implements ActionListener {
         exitButton.setBackground(new Color(0x9B4922));
         exitButton.setForeground(new Color(0xEFE7DD));
         exitButton.setFont(new Font("Arial", Font.BOLD, 12));
-        // exitButton.addActionListener(this::actionPerformedExit);
+        exitButton.setFocusable(false);
+        exitButton.addActionListener(this::actionPerformedExit);
         panel.add(exitButton);
 
         return panel;
@@ -70,7 +71,7 @@ public class NoMatch extends JFrame implements ActionListener {
         icon.setHorizontalAlignment(JLabel.CENTER);
         panel.add(icon);
 
-        JLabel heading = new JLabel("Don't worry!");
+        JLabel heading = new JLabel("Don't worry, " + Prompt.name + "!");
         heading.setBounds(0, 125, 904, 65);
         heading.setForeground(new Color(0xEFE7DD));
         heading.setFont(new Font("Arial", Font.BOLD, 60));
@@ -79,7 +80,7 @@ public class NoMatch extends JFrame implements ActionListener {
 
         String content = "<html><div style='text-align: center;'>"
                            + "I think we can get more ready next time.<br>"
-                           + "There’s always tomorrow, right?</div></html>";
+                           + "There's always tomorrow, right?</div></html>";
 
         JLabel text = new JLabel(content);
         text.setBounds(0, 215, 904, 50);
@@ -93,6 +94,7 @@ public class NoMatch extends JFrame implements ActionListener {
         againButton.setBackground(new Color(0x9B4922));
         againButton.setForeground(new Color(0xEFE7DD));
         againButton.setFont(new Font("Arial", Font.BOLD, 12));
+        againButton.setFocusable(false);
         againButton.addActionListener(this);
         panel.add(againButton);
 
@@ -101,8 +103,11 @@ public class NoMatch extends JFrame implements ActionListener {
 
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == againButton) {
-            dispose();
-        }
+            SwingUtilities.invokeLater(() -> {
+                new Prompt().setVisible(true);
+            });
+            dispose();  
+        }  
     }
 
     public void actionPerformedBack(ActionEvent e) {
@@ -111,6 +116,15 @@ public class NoMatch extends JFrame implements ActionListener {
         }
     }
     
+    public void actionPerformedExit(ActionEvent e) {
+        if (e.getSource() == exitButton) {
+            SwingUtilities.invokeLater(() -> {
+                new Credits().setVisible(true);
+            });
+            dispose();
+        }
+    }
+
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {
             new NoMatch().setVisible(true);
