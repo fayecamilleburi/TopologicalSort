@@ -1,4 +1,4 @@
-//package machine;
+// package machine;
 
 import java.awt.*;
 import java.awt.event.*;
@@ -99,7 +99,7 @@ public class Option extends JPanel implements ActionListener {
 
             if (window != null) {
                 window.dispose();
-                }
+            }
         }
     }
 
@@ -114,7 +114,7 @@ public class Option extends JPanel implements ActionListener {
             if (window != null) {
                 window.dispose();
                 }
-            }
+        }
     }
     
     public static void main(String[] args) {
