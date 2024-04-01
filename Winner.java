@@ -1,4 +1,3 @@
-//This is the final code.
 
 // package machine;
 
@@ -108,7 +107,17 @@ public class Winner extends JFrame implements ActionListener {
             SwingUtilities.invokeLater(() -> {
                 new Prompt().setVisible(true);
             });
-            dispose();  
+            disposeAllFrames(); 
+             
+            
+        }
+    }
+    private void disposeAllFrames(){
+        Window[] windows = Window.getWindows();
+        for (Window window : windows){
+            if (window instanceof JFrame){
+                window.dispose();
+            }
         }
     }
 
