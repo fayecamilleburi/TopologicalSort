@@ -172,10 +172,10 @@ public class VSD_UI_FEMALE extends JFrame implements ActionListener {
         panelsArray2[5] = shoesPanel();
         panel.add(panelsArray2[5]);
 
-        panelsArray2[6] = IDPanel();
+        panelsArray2[6] = accPanel();
         panel.add(panelsArray2[6]);
 
-        panelsArray2[7] = accPanel();
+        panelsArray2[7] = IDPanel();
         panel.add(panelsArray2[7]);
         
         panelsArray2[8] = goPanel();
@@ -322,29 +322,9 @@ public class VSD_UI_FEMALE extends JFrame implements ActionListener {
         return panel;
     }
 
-    public JPanel IDPanel() {
-        JPanel panel = new JPanel(null);
-        panel.setBounds(10, 250, 220, 90);
-        panel.setBackground(new Color(0x764B36));
-        panel.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                togglePanelState(panel);
-                panel.setBackground(isPanelClicked(panel) ? new Color(0x9B4922) : new Color(0x764B36));
-            }
-        });
-        IDLabel = new JLabel("School ID");
-        IDLabel.setBounds(0, 0, 220, 90);
-        IDLabel.setForeground(Color.WHITE);
-        IDLabel.setFont(new Font("Arial", Font.PLAIN, 15));
-        IDLabel.setHorizontalAlignment(JLabel.CENTER);
-        panel.add(IDLabel);
-        return panel;
-    }
-
     public JPanel accPanel() {
         JPanel panel = new JPanel(null);
-        panel.setBounds(240, 250, 220, 90);
+        panel.setBounds(10, 250, 220, 90);  
         panel.setBackground(new Color(0x764B36));
         panel.addMouseListener(new MouseAdapter() {
             @Override
@@ -359,6 +339,26 @@ public class VSD_UI_FEMALE extends JFrame implements ActionListener {
         accPLabel.setFont(new Font("Arial", Font.PLAIN, 15));
         accPLabel.setHorizontalAlignment(JLabel.CENTER);
         panel.add(accPLabel);
+        return panel;
+    }
+
+    public JPanel IDPanel() {
+        JPanel panel = new JPanel(null);
+        panel.setBounds(240, 250, 220, 90);
+        panel.setBackground(new Color(0x764B36));
+        panel.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                togglePanelState(panel);
+                panel.setBackground(isPanelClicked(panel) ? new Color(0x9B4922) : new Color(0x764B36));
+            }
+        });
+        IDLabel = new JLabel("School ID");
+        IDLabel.setBounds(0, 0, 220, 90);
+        IDLabel.setForeground(Color.WHITE);
+        IDLabel.setFont(new Font("Arial", Font.PLAIN, 15));
+        IDLabel.setHorizontalAlignment(JLabel.CENTER);
+        panel.add(IDLabel);
         return panel;
     }
 
@@ -484,9 +484,9 @@ public class VSD_UI_FEMALE extends JFrame implements ActionListener {
         graph.addEdge(1, 4);
         graph.addEdge(2, 5);
         graph.addEdge(3, 6);
-        graph.addEdge(4, 7);
+        graph.addEdge(4, 8);
         graph.addEdge(5, 8);
-        graph.addEdge(6, 8);
+        graph.addEdge(6, 7);
         graph.addEdge(7, 8);
 
         // Performs Topological Sort using DFS and stores all possible orders in list
