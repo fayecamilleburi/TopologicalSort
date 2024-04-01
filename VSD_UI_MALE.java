@@ -396,7 +396,7 @@ public class VSD_UI_MALE extends JFrame implements ActionListener {
         goLabel = new JLabel("Face Mask");
         goLabel.setBounds(0, 0, 450, 90);
         goLabel.setForeground(Color.WHITE);
-        goLabel.setFont(new Font("Arial", Font.BOLD, 15));
+        goLabel.setFont(new Font("Arial", Font.PLAIN, 15));
         goLabel.setHorizontalAlignment(JLabel.CENTER);
         panel.add(goLabel);
         return panel;
@@ -523,9 +523,9 @@ public class VSD_UI_MALE extends JFrame implements ActionListener {
         matchArea.setFont(new Font("Arial", Font.BOLD, 30));
         matchArea.setForeground(new Color(0x9B4922));
 
-        for (List<Integer> order : allOrders) {
+        for (List<Integer> or : allOrders) {
             StringBuilder sb = new StringBuilder();
-            for (int vertex : order) {
+            for (int vertex : or) {
                 sb.append(vertex).append(" ");
             }
             String currentSortString = sb.toString().trim();
