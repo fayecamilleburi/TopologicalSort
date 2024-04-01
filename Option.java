@@ -35,7 +35,6 @@ public class Option extends JPanel implements ActionListener {
         panel.setBounds(30, 30, 1200, 260);
         panel.setBackground(new Color(0xEFE7DD));
 
-        //"<html><b><i>Hey, partner!</i></b></html>"
         JLabel greetings = new JLabel("<html><b><i>Welcome, " + name + "!</i></b></html>");
         greetings.setForeground(new Color(0x764B36));
         greetings.setFont(new Font("Arial", Font.BOLD, 70));
