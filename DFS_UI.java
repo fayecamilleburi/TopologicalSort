@@ -1,4 +1,4 @@
-// package machine;
+//package machine;
 
 import java.awt.*;
 import java.awt.event.*;
@@ -396,6 +396,8 @@ public class DFS_UI extends JFrame implements ActionListener {
         matchArea.setHorizontalAlignment(SwingConstants.CENTER);
         panel.add(matchArea);
 
+        
+
         readyButton = new JButton("We're ready!");
         readyButton.setBounds(300, 460, 120, 30);
         readyButton.setBackground(new Color(0x5C3420));
@@ -445,6 +447,8 @@ public class DFS_UI extends JFrame implements ActionListener {
             }
         }
     }
+
+   
 
     private void displayClickedPanels() {
         resultsArea.setText(""); // Clear the resultsArea JTextArea before printing
