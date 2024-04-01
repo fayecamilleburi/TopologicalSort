@@ -447,10 +447,12 @@ public class VSD_UI_FEMALE extends JFrame implements ActionListener {
     }
 
     private void displayClickedPanels() {
+        resultsArea.setText("\n"); // Clear the resultsArea JTextArea before printing
+
         resultsArea.setFont(new Font("Arial", Font.PLAIN, 25));
         resultsArea.setForeground(new Color(0x5C3420));
 
-        // Print the contents of clickedPanels to submitOutput with indices
+        // Print the contents of clickedPanels to resultsArea with indices
         for (int i = 0; i < clickedPanels.size(); i++) {
             JPanel panel = clickedPanels.get(i);
             // Find the index of the panel in the panelsArray
