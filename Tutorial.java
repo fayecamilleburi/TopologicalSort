@@ -1,3 +1,4 @@
+//package machine;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.ArrayList;
@@ -163,6 +164,8 @@ public class Tutorial extends JFrame implements ActionListener {
 
         return panel;
     }
+
+    
 
     public JPanel nodeZero() {
         JPanel panel = new JPanel(null);
@@ -369,10 +372,17 @@ public class Tutorial extends JFrame implements ActionListener {
         readyButton.setForeground(Color.WHITE);
         readyButton.setFont(new Font("Arial", Font.BOLD | Font.ITALIC, 12));
         readyButton.setFocusable(false);
+        readyButton.addActionListener(this::actionPerformedReady);
         panel.add(readyButton);
     
         return panel;
     }    
+
+    public void actionPerformedReady(ActionEvent e) {
+        if (e.getSource() == readyButton) {
+            dispose();
+        }
+    }
 
     private JLabel resultInstruct(){
         String resultNote= "<html><div style='text-align: center;'>"
