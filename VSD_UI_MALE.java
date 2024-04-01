@@ -8,9 +8,9 @@ import java.util.List;
 import javax.swing.*;
 
 public class VSD_UI_MALE extends JFrame implements ActionListener {
-    private JLabel topLabel, UDLabel, socksLabel, uTopLabel, uBotLabel, shoesLabel, IDLabel, accPLabel, goLabel;
+    private JLabel topLabel, UDLabel, socksLabel, uTopLabel, uBotLabel, shoesLabel, IDLabel, accPLabel, goLabel, matchArea;
     private JLabel headerLabel;
-    private JTextArea resultsArea, matchArea;
+    private JTextArea resultsArea;
     private JButton backButton, exitButton, submitButton, readyButton, clearButton;
     private ArrayList<JPanel> clickedPanels;
     private JPanel[] panelsArray2 = new JPanel[9];
@@ -60,9 +60,10 @@ public class VSD_UI_MALE extends JFrame implements ActionListener {
         panel.add(subtext);
 
         backButton = new JButton("Back");
-        backButton.setBounds(10, 20, 100, 40);
+        backButton.setBounds(20, 20, 100, 40);
         backButton.setBackground(new Color(0x9B4922));
         backButton.setForeground(Color.WHITE);
+        backButton.setFocusable(false);
         backButton.addActionListener(this::actionPerformedBack);
         panel.add(backButton);
 
@@ -70,6 +71,7 @@ public class VSD_UI_MALE extends JFrame implements ActionListener {
         exitButton.setBounds(1152, 20, 100, 40);
         exitButton.setBackground(new Color(0x9B4922));
         exitButton.setForeground(Color.WHITE);
+        exitButton.setFocusable(false);
         exitButton.addActionListener(this::actionPerformedExit);
         panel.add(exitButton);
         return panel;
@@ -77,7 +79,6 @@ public class VSD_UI_MALE extends JFrame implements ActionListener {
 
     public void actionPerformedBack(ActionEvent e) {
         if (e.getSource() == backButton) {
-            // Code goes here...
             dispose();
 
             SwingUtilities.invokeLater(() -> {
@@ -88,7 +89,9 @@ public class VSD_UI_MALE extends JFrame implements ActionListener {
 
     public void actionPerformedExit(ActionEvent e) {
         if (e.getSource() == exitButton) {
-            
+            SwingUtilities.invokeLater(() -> {
+                new Credits().setVisible(true);
+            });
         }
     }
 
@@ -140,7 +143,7 @@ public class VSD_UI_MALE extends JFrame implements ActionListener {
                     + "applicable.";
 
         JLabel subtext = new JLabel(note);
-        subtext.setBounds(0, 450, 350, 100);
+        subtext.setBounds(0, 410, 350, 100);
         subtext.setForeground(new Color(0x9B4922));
         subtext.setFont(new Font("Arial", Font.ITALIC, 12));
         subtext.setHorizontalAlignment(JLabel.CENTER);
@@ -186,6 +189,7 @@ public class VSD_UI_MALE extends JFrame implements ActionListener {
         clearButton.setBackground(new Color(0x5C3420));
         clearButton.setForeground(Color.WHITE);
         clearButton.setFont(new Font("Arial", Font.BOLD, 12));
+        clearButton.setFocusable(false);
         clearButton.addActionListener(this);
         panel.add(clearButton);
 
@@ -194,6 +198,7 @@ public class VSD_UI_MALE extends JFrame implements ActionListener {
         submitButton.setBackground(new Color(0x5C3420));
         submitButton.setForeground(Color.WHITE);
         submitButton.setFont(new Font("Arial", Font.BOLD, 12));
+        submitButton.setFocusable(false);
         submitButton.addActionListener(this);
         panel.add(submitButton);
         return panel;
@@ -203,6 +208,7 @@ public class VSD_UI_MALE extends JFrame implements ActionListener {
         JPanel panel = new JPanel(null);
         panel.setBounds(10, 50, 143, 90);
         panel.setBackground(new Color(0x764B36));
+        panel.setCursor(new Cursor(Cursor.HAND_CURSOR));
 
         panel.addMouseListener(new MouseAdapter() {
             @Override
@@ -212,7 +218,7 @@ public class VSD_UI_MALE extends JFrame implements ActionListener {
             }
         });
         //String htmlContent0 = "Undershirt Tank top";
-        topLabel = new JLabel("Undershirt Tank top");
+        topLabel = new JLabel("Inner Sando");
         topLabel.setBounds(0, 0, 143, 90);
         topLabel.setForeground(Color.WHITE);
         topLabel.setFont(new Font("Arial", Font.PLAIN, 15));
@@ -225,6 +231,8 @@ public class VSD_UI_MALE extends JFrame implements ActionListener {
         JPanel panel = new JPanel(null);
         panel.setBounds(163, 50, 144, 90);
         panel.setBackground(new Color(0x764B36));
+        panel.setCursor(new Cursor(Cursor.HAND_CURSOR));
+
         panel.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -245,6 +253,8 @@ public class VSD_UI_MALE extends JFrame implements ActionListener {
         JPanel panel = new JPanel(null);
         panel.setBounds(317, 50, 143, 90);
         panel.setBackground(new Color(0x764B36));
+        panel.setCursor(new Cursor(Cursor.HAND_CURSOR));
+
         panel.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -265,6 +275,8 @@ public class VSD_UI_MALE extends JFrame implements ActionListener {
         JPanel panel = new JPanel(null);
         panel.setBounds(10, 150, 143, 90);
         panel.setBackground(new Color(0x764B36));
+        panel.setCursor(new Cursor(Cursor.HAND_CURSOR));
+
         panel.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -286,6 +298,8 @@ public class VSD_UI_MALE extends JFrame implements ActionListener {
         JPanel panel = new JPanel(null);
         panel.setBounds(163, 150, 144, 90);
         panel.setBackground(new Color(0x764B36));
+        panel.setCursor(new Cursor(Cursor.HAND_CURSOR));
+
         panel.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -306,6 +320,8 @@ public class VSD_UI_MALE extends JFrame implements ActionListener {
         JPanel panel = new JPanel(null);
         panel.setBounds(317, 150, 143, 90);
         panel.setBackground(new Color(0x764B36));
+        panel.setCursor(new Cursor(Cursor.HAND_CURSOR));
+
         panel.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -326,6 +342,8 @@ public class VSD_UI_MALE extends JFrame implements ActionListener {
         JPanel panel = new JPanel(null);
         panel.setBounds(10, 250, 220, 90);
         panel.setBackground(new Color(0x764B36));
+        panel.setCursor(new Cursor(Cursor.HAND_CURSOR));
+
         panel.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -346,6 +364,8 @@ public class VSD_UI_MALE extends JFrame implements ActionListener {
         JPanel panel = new JPanel(null);
         panel.setBounds(240, 250, 220, 90);
         panel.setBackground(new Color(0x764B36));
+        panel.setCursor(new Cursor(Cursor.HAND_CURSOR));
+
         panel.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -366,6 +386,8 @@ public class VSD_UI_MALE extends JFrame implements ActionListener {
         JPanel panel = new JPanel(null);
         panel.setBounds(10, 350, 450, 90);
         panel.setBackground(new Color(0x764B36));
+        panel.setCursor(new Cursor(Cursor.HAND_CURSOR));
+
         panel.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -374,7 +396,7 @@ public class VSD_UI_MALE extends JFrame implements ActionListener {
             }
         });
         //String htmlContent = "Ready to go to School!";
-        goLabel = new JLabel("Ready to go to School!");
+        goLabel = new JLabel("Confident Smile");
         goLabel.setBounds(0, 0, 450, 90);
         goLabel.setForeground(Color.WHITE);
         goLabel.setFont(new Font("Arial", Font.BOLD, 15));
@@ -387,30 +409,34 @@ public class VSD_UI_MALE extends JFrame implements ActionListener {
         JPanel panel = new JPanel(null);
         panel.setBounds(830, 10, 424, 580);
         panel.setBackground(new Color(0xEFE7DD));
+        panel.setCursor(new Cursor(Cursor.HAND_CURSOR));
     
-        JLabel subheading = new JLabel("My routine:");
+        JLabel subheading = new JLabel("My uniform:");
         subheading.setBounds(20, 50, 424, 25);
         subheading.setForeground(new Color(0x764B36));
-        subheading.setFont(new Font("Arial", Font.BOLD, 20));
+        subheading.setFont(new Font("Arial", Font.BOLD, 30));
         panel.add(subheading);
     
         resultsArea = new JTextArea();
         resultsArea.setEditable(false);
-        resultsArea.setBounds(20, 80, 384, 275);
+        resultsArea.setBounds(20, 85, 384, 275);
         resultsArea.setBackground(new Color(0xEFE7DD));
+        resultsArea.setCaretColor(new Color(0xEFE7DD));
         panel.add(resultsArea);
 
-        matchArea = new JTextArea();
-        matchArea.setEditable(false);
-        matchArea.setBounds(20, 365, 384, 50);
+        matchArea = new JLabel();
+        matchArea.setBounds(20, 375, 384, 50);
         matchArea.setBackground(new Color(0xEFE7DD));
+        matchArea.setFont(new Font("Arial", Font.BOLD, 24));
+        matchArea.setHorizontalAlignment(SwingConstants.CENTER);
         panel.add(matchArea);
 
         readyButton = new JButton("We're ready!");
         readyButton.setBounds(290, 460, 120, 30);
         readyButton.setBackground(new Color(0x5C3420));
         readyButton.setForeground(Color.WHITE);
-        readyButton.setFont(new Font("Arial", Font.ITALIC, 12));
+        readyButton.setFont(new Font("Arial",Font.BOLD | Font.ITALIC, 12));
+        readyButton.setFocusable(false);
         readyButton.addActionListener(this::actionPerformedReady);
         panel.add(readyButton);
     
@@ -433,7 +459,7 @@ public class VSD_UI_MALE extends JFrame implements ActionListener {
 
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == submitButton) {
-            if (clickedPanels == null || clickedPanels.size() < 9) {
+            if (clickedPanels == null || clickedPanels.size() < 7) {
                 showErrorDialog("Make sure all panels are visited.");
             } else {
                 displayClickedPanels();
@@ -442,12 +468,21 @@ public class VSD_UI_MALE extends JFrame implements ActionListener {
         }
 
         if (e.getSource() == clearButton) {
-            // Code goes here...
+            if (clickedPanels.isEmpty()) {
+                showErrorDialog("You haven't clicked panels!");
+            } else {
+                clickedPanels.clear();
+                for (JPanel panel : panelsArray2) {
+                    panel.setBackground(new Color(0x764B36));
+                }
+                resultsArea.setText("");
+                matchArea.setText("");
+            }
         }
     }
 
     private void displayClickedPanels() {
-        resultsArea.setText("\n"); // Clear the resultsArea JTextArea before printing
+        resultsArea.setText(""); // Clear the resultsArea JTextArea before printing
         
         resultsArea.setFont(new Font("Arial", Font.PLAIN, 25));
         resultsArea.setForeground(new Color(0x5C3420));
@@ -493,9 +528,9 @@ public class VSD_UI_MALE extends JFrame implements ActionListener {
         List<List<Integer>> allOrders = graph.topologicalSortVariableSizeDecrease();
         boolean foundMatch = false;
 
-        matchArea.setText("\n"); // Clear the matchArea JTextArea before printing
-        matchArea.setFont(new Font("Arial", Font.PLAIN, 25));
-        matchArea.setForeground(new Color(0x5C3420));
+        matchArea.setText("\n"); 
+        matchArea.setFont(new Font("Arial", Font.BOLD, 30));
+        matchArea.setForeground(new Color(0x9B4922));
 
         for (List<Integer> order : allOrders) {
             StringBuilder sb = new StringBuilder();
@@ -504,7 +539,7 @@ public class VSD_UI_MALE extends JFrame implements ActionListener {
             }
             String currentSortString = sb.toString().trim();
             if (result.equals(currentSortString)) {
-                matchArea.setText("I can do that.");
+                matchArea.setText("I can do that!");
                 foundMatch = true;
                 order.clear();
                 break; // No need to continue searching
@@ -526,18 +561,18 @@ public class VSD_UI_MALE extends JFrame implements ActionListener {
     public void actionPerformedReady(ActionEvent e) {
         if (e.getSource() == readyButton) {
             if (clickedPanels.isEmpty()) {
-                showErrorDialog("Select your routine first!");
+                showErrorDialog("Select your clothings first!");
             }
             
-            else if(matchArea.getText().equals("I can do that.")){
+            else if(matchArea.getText().equals("I can do that!")){
                 SwingUtilities.invokeLater(() -> {
-                new Success().setVisible(true);
+                new Winner().setVisible(true);
                 });
             }
 
             else if(matchArea.getText().equals("Oops!")){
                 SwingUtilities.invokeLater(() -> {
-                new NoMatch().setVisible(true);
+                new MatchNo().setVisible(true);
                 });
             }
         }
