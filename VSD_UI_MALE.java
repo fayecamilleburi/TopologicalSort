@@ -22,9 +22,11 @@ public class VSD_UI_MALE extends JFrame implements ActionListener {
     private void initComponents() {
         setTitle("GRWM");
         setSize(new Dimension(1280, 720));
+
         setResizable(false);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
+        
         add(mainPanel());
     }
 
@@ -78,7 +80,6 @@ public class VSD_UI_MALE extends JFrame implements ActionListener {
     public void actionPerformedBack(ActionEvent e) {
         if (e.getSource() == backButton) {
             dispose();
-
             SwingUtilities.invokeLater(() -> {
                 new Gender().setVisible(true);
             });
@@ -125,7 +126,6 @@ public class VSD_UI_MALE extends JFrame implements ActionListener {
                            + "which clothing comes first?<br>"
                            + "I need your help to look neat<br>"
                            + "and presentable at school.</div></html>";
-
 
         JLabel content = new JLabel(htmlContent);
         content.setBounds(0, 80, 350, 300);
@@ -215,7 +215,7 @@ public class VSD_UI_MALE extends JFrame implements ActionListener {
                 panel.setBackground(isPanelClicked(panel) ? new Color(0x9B4922) : new Color(0x764B36));
             }
         });
-        //String htmlContent0 = "Undershirt Tank top";
+
         topLabel = new JLabel("Sando");
         topLabel.setBounds(0, 0, 143, 90);
         topLabel.setForeground(Color.WHITE);
@@ -238,6 +238,7 @@ public class VSD_UI_MALE extends JFrame implements ActionListener {
                 panel.setBackground(isPanelClicked(panel) ? new Color(0x9B4922) : new Color(0x764B36));
             }
         });
+
         UDLabel = new JLabel("Underwear");
         UDLabel.setBounds(0, 0, 144, 90);
         UDLabel.setForeground(Color.WHITE);
@@ -260,6 +261,7 @@ public class VSD_UI_MALE extends JFrame implements ActionListener {
                 panel.setBackground(isPanelClicked(panel) ? new Color(0x9B4922) : new Color(0x764B36));
             }
         });
+
         socksLabel = new JLabel("Socks");
         socksLabel.setBounds(0, 0, 143, 90);
         socksLabel.setForeground(Color.WHITE);
@@ -305,6 +307,7 @@ public class VSD_UI_MALE extends JFrame implements ActionListener {
                 panel.setBackground(isPanelClicked(panel) ? new Color(0x9B4922) : new Color(0x764B36));
             }
         });
+
         uBotLabel = new JLabel("Pants");
         uBotLabel.setBounds(0, 0, 143, 90);
         uBotLabel.setForeground(Color.WHITE);
@@ -327,6 +330,7 @@ public class VSD_UI_MALE extends JFrame implements ActionListener {
                 panel.setBackground(isPanelClicked(panel) ? new Color(0x9B4922) : new Color(0x764B36));
             }
         });
+
         shoesLabel = new JLabel("Shoes");
         shoesLabel.setBounds(0, 0, 143, 90);
         shoesLabel.setForeground(Color.WHITE);
@@ -349,6 +353,7 @@ public class VSD_UI_MALE extends JFrame implements ActionListener {
                 panel.setBackground(isPanelClicked(panel) ? new Color(0x9B4922) : new Color(0x764B36));
             }
         });
+
         IDLabel = new JLabel("School ID");
         IDLabel.setBounds(0, 0, 220, 90);
         IDLabel.setForeground(Color.WHITE);
@@ -371,6 +376,7 @@ public class VSD_UI_MALE extends JFrame implements ActionListener {
                 panel.setBackground(isPanelClicked(panel) ? new Color(0x9B4922) : new Color(0x764B36));
             }
         });
+
         accPLabel = new JLabel("Belt");
         accPLabel.setBounds(0, 0, 220, 90);
         accPLabel.setForeground(Color.WHITE);
@@ -393,6 +399,7 @@ public class VSD_UI_MALE extends JFrame implements ActionListener {
                 panel.setBackground(isPanelClicked(panel) ? new Color(0x9B4922) : new Color(0x764B36));
             }
         });
+
         goLabel = new JLabel("Face Mask");
         goLabel.setBounds(0, 0, 450, 90);
         goLabel.setForeground(Color.WHITE);
@@ -449,7 +456,6 @@ public class VSD_UI_MALE extends JFrame implements ActionListener {
                 sb.append(" ");
             }
         }
-
         return sb.toString();
     }
 
@@ -572,7 +578,6 @@ public class VSD_UI_MALE extends JFrame implements ActionListener {
     private void togglePanelState(JPanel panel) {
         if (clickedPanels.contains(panel)) {
             clickedPanels.remove(panel);
-            
         } else {
             clickedPanels.add(panel);
         } 
