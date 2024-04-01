@@ -45,6 +45,7 @@ public class Success extends JFrame implements ActionListener {
         backButton.setBackground(new Color(0xEFE7DD));
         backButton.setForeground(new Color(0x5C3420));
         backButton.setFont(new Font("Arial", Font.BOLD, 12));
+        backButton.setFocusable(false);
         backButton.addActionListener(this::actionPerformedBack);
         panel.add(backButton);
 
@@ -53,7 +54,8 @@ public class Success extends JFrame implements ActionListener {
         exitButton.setBackground(new Color(0xEFE7DD));
         exitButton.setForeground(new Color(0x5C3420));
         exitButton.setFont(new Font("Arial", Font.BOLD, 12));
-        // exitButton.addActionListener(this::actionPerformedExit);
+        exitButton.setFocusable(false);
+        exitButton.addActionListener(this::actionPerformedExit);
         panel.add(exitButton);
 
         return panel;
@@ -71,7 +73,7 @@ public class Success extends JFrame implements ActionListener {
         icon.setHorizontalAlignment(JLabel.CENTER);
         panel.add(icon);
 
-        JLabel heading = new JLabel("Good job!");
+        JLabel heading = new JLabel("Good job, " + Prompt.name + "!");
         heading.setBounds(0, 125, 904, 65);
         heading.setForeground(new Color(0x9B4922));
         heading.setFont(new Font("Arial", Font.BOLD, 60));
@@ -94,6 +96,7 @@ public class Success extends JFrame implements ActionListener {
         againButton.setBackground(new Color(0x5C3420));
         againButton.setForeground(Color.WHITE);
         againButton.setFont(new Font("Arial", Font.BOLD, 12));
+        againButton.setFocusable(false);
         againButton.addActionListener(this);
         panel.add(againButton);
 
@@ -102,12 +105,24 @@ public class Success extends JFrame implements ActionListener {
 
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == againButton) {
-            dispose();
+            SwingUtilities.invokeLater(() -> {
+                new Prompt().setVisible(true);
+            });
+            dispose();  
         }
     }
 
     public void actionPerformedBack(ActionEvent e) {
         if (e.getSource() == backButton) {
+            dispose();
+        }
+    }
+
+    public void actionPerformedExit(ActionEvent e) {
+        if (e.getSource() == exitButton) {
+            SwingUtilities.invokeLater(() -> {
+                new Credits().setVisible(true);
+            });
             dispose();
         }
     }
