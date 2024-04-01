@@ -1,4 +1,4 @@
-// package machine;
+//package machine;
 
 import java.awt.*;
 import java.awt.event.*;
@@ -8,8 +8,8 @@ import java.util.List;
 import javax.swing.*;
 
 public class DFS_UI extends JFrame implements ActionListener {
-    private JLabel labelZero, labelOne, labelTwo, labelThree, labelFour, labelFive, labelSix;
-    private JTextArea resultsArea, matchArea;
+    private JLabel labelZero, labelOne, labelTwo, labelThree, labelFour, labelFive, labelSix, matchArea;
+    private JTextArea resultsArea;
     private JButton backButton, exitButton, submitButton, readyButton, clearButton;
     private ArrayList<JPanel> clickedPanels;
     private JPanel[] panelsArray = new JPanel[7];
@@ -47,7 +47,7 @@ public class DFS_UI extends JFrame implements ActionListener {
         panel.setBackground(new Color(0x5C3420));
 
         JLabel header = new JLabel("Preparing for School");
-        header.setBounds(0, 13, 1280, 30);
+        header.setBounds(0, 15, 1280, 30);
         header.setForeground(Color.WHITE);
         header.setFont(new Font("Arial", Font.BOLD, 25));
         header.setHorizontalAlignment(JLabel.CENTER);
@@ -61,17 +61,19 @@ public class DFS_UI extends JFrame implements ActionListener {
         panel.add(subtext);
 
         backButton = new JButton("Back");
-        backButton.setBounds(10, 20, 100, 40);
+        backButton.setBounds(20, 20, 100, 40);
         backButton.setBackground(new Color(0x9B4922));
         backButton.setForeground(Color.WHITE);
         backButton.addActionListener(this::actionPerformedBack);
+        backButton.setFocusable(false);
         panel.add(backButton);
 
         exitButton = new JButton("Exit");
-        exitButton.setBounds(1152, 20, 100, 40);
+        exitButton.setBounds(1150, 20, 100, 40);
         exitButton.setBackground(new Color(0x9B4922));
         exitButton.setForeground(Color.WHITE);
         exitButton.addActionListener(this::actionPerformedExit);
+        exitButton.setFocusable(false);
         panel.add(exitButton);
 
         return panel;
@@ -89,7 +91,9 @@ public class DFS_UI extends JFrame implements ActionListener {
 
     public void actionPerformedExit(ActionEvent e) {
         if (e.getSource() == exitButton) {
-            // Code goes here...
+            SwingUtilities.invokeLater(() -> {
+                new Credits().setVisible(true);
+            });
         }
     }
 
@@ -119,7 +123,7 @@ public class DFS_UI extends JFrame implements ActionListener {
 
         String htmlContent = "<html><div style='text-align: center;'>"
                            + "Sun shines and alarm rings...<br>"
-                           + "Oh, it’s my first day in college!<br>" 
+                           + "Oh, it's my first day in college!<br>" 
                            + "I wonder, what to do first?<br>"
                            + "I need your help to complete<br>"
                            + "my morning routine so I can<br>"
@@ -138,10 +142,11 @@ public class DFS_UI extends JFrame implements ActionListener {
                     + "***<br>"
                     + "Click the tiles on the center panel according to the<br>"
                     + "order of your choice. Check if the sequence is<br>"
-                    + "applicable.";
+                    + "applicable.</div></html>";
+                    
 
         JLabel subtext = new JLabel(note);
-        subtext.setBounds(0, 450, 350, 100);
+        subtext.setBounds(0, 410, 350, 100);
         subtext.setForeground(new Color(0x9B4922));
         subtext.setFont(new Font("Arial", Font.ITALIC, 12));
         subtext.setHorizontalAlignment(JLabel.CENTER);
@@ -181,6 +186,7 @@ public class DFS_UI extends JFrame implements ActionListener {
         clearButton.setBackground(new Color(0x5C3420));
         clearButton.setForeground(Color.WHITE);
         clearButton.setFont(new Font("Arial", Font.BOLD, 12));
+        clearButton.setFocusable(false);
         clearButton.addActionListener(this);
         panel.add(clearButton);
 
@@ -189,6 +195,7 @@ public class DFS_UI extends JFrame implements ActionListener {
         submitButton.setBackground(new Color(0x5C3420));
         submitButton.setForeground(Color.WHITE);
         submitButton.setFont(new Font("Arial", Font.BOLD, 12));
+        submitButton.setFocusable(false);
         submitButton.addActionListener(this);
         panel.add(submitButton);
 
@@ -199,6 +206,7 @@ public class DFS_UI extends JFrame implements ActionListener {
         JPanel panel = new JPanel(null);
         panel.setBounds(10, 50, 450, 90);
         panel.setBackground(new Color(0x764B36));
+        panel.setCursor(new Cursor(Cursor.HAND_CURSOR));
 
         panel.addMouseListener(new MouseAdapter() {
             @Override
@@ -222,6 +230,7 @@ public class DFS_UI extends JFrame implements ActionListener {
         JPanel panel = new JPanel(null);
         panel.setBounds(10, 150, 143, 90);
         panel.setBackground(new Color(0x764B36));
+        panel.setCursor(new Cursor(Cursor.HAND_CURSOR));
 
         panel.addMouseListener(new MouseAdapter() {
             @Override
@@ -245,6 +254,7 @@ public class DFS_UI extends JFrame implements ActionListener {
         JPanel panel = new JPanel(null);
         panel.setBounds(163, 150, 144, 90);
         panel.setBackground(new Color(0x764B36));
+        panel.setCursor(new Cursor(Cursor.HAND_CURSOR));
 
         panel.addMouseListener(new MouseAdapter() {
             @Override
@@ -268,6 +278,7 @@ public class DFS_UI extends JFrame implements ActionListener {
         JPanel panel = new JPanel(null);
         panel.setBounds(317, 150, 143, 90);
         panel.setBackground(new Color(0x764B36));
+        panel.setCursor(new Cursor(Cursor.HAND_CURSOR));
 
         panel.addMouseListener(new MouseAdapter() {
             @Override
@@ -291,6 +302,7 @@ public class DFS_UI extends JFrame implements ActionListener {
         JPanel panel = new JPanel(null);
         panel.setBounds(10, 250, 220, 90);
         panel.setBackground(new Color(0x764B36));
+        panel.setCursor(new Cursor(Cursor.HAND_CURSOR));
 
         panel.addMouseListener(new MouseAdapter() {
             @Override
@@ -314,6 +326,7 @@ public class DFS_UI extends JFrame implements ActionListener {
         JPanel panel = new JPanel(null);
         panel.setBounds(240, 250, 220, 90);
         panel.setBackground(new Color(0x764B36));
+        panel.setCursor(new Cursor(Cursor.HAND_CURSOR));
 
         panel.addMouseListener(new MouseAdapter() {
             @Override
@@ -338,6 +351,7 @@ public class DFS_UI extends JFrame implements ActionListener {
         JPanel panel = new JPanel(null);
         panel.setBounds(10, 350, 450, 90);
         panel.setBackground(new Color(0x764B36));
+        panel.setCursor(new Cursor(Cursor.HAND_CURSOR));
 
         panel.addMouseListener(new MouseAdapter() {
             @Override
@@ -365,27 +379,32 @@ public class DFS_UI extends JFrame implements ActionListener {
         JLabel subheading = new JLabel("My routine:");
         subheading.setBounds(20, 50, 424, 25);
         subheading.setForeground(new Color(0x764B36));
-        subheading.setFont(new Font("Arial", Font.BOLD, 20));
+        subheading.setFont(new Font("Arial", Font.BOLD, 25));
         panel.add(subheading);
     
         resultsArea = new JTextArea();
         resultsArea.setEditable(false);
-        resultsArea.setBounds(20, 80, 384, 275);
+        resultsArea.setBounds(20, 85, 384, 275);
         resultsArea.setBackground(new Color(0xEFE7DD));
+        resultsArea.setCaretColor(new Color(0xEFE7DD));
         panel.add(resultsArea);
 
-        matchArea = new JTextArea();
-        matchArea.setEditable(false);
-        matchArea.setBounds(20, 365, 384, 50);
+        matchArea = new JLabel();
+        matchArea.setBounds(20, 355, 384, 50);
         matchArea.setBackground(new Color(0xEFE7DD));
+        matchArea.setFont(new Font("Arial", Font.BOLD, 24));
+        matchArea.setHorizontalAlignment(SwingConstants.CENTER);
         panel.add(matchArea);
 
+        
+
         readyButton = new JButton("We're ready!");
-        readyButton.setBounds(290, 460, 120, 30);
+        readyButton.setBounds(300, 460, 120, 30);
         readyButton.setBackground(new Color(0x5C3420));
         readyButton.setForeground(Color.WHITE);
-        readyButton.setFont(new Font("Arial", Font.ITALIC, 12));
+        readyButton.setFont(new Font("Arial", Font.BOLD | Font.ITALIC, 12));
         readyButton.addActionListener(this::actionPerformedReady);
+        readyButton.setFocusable(false);
         panel.add(readyButton);
     
         return panel;
@@ -416,13 +435,22 @@ public class DFS_UI extends JFrame implements ActionListener {
         }
 
         if (e.getSource() == clearButton) {
-            // Code goes here...
+            if (clickedPanels.isEmpty()) {
+                showErrorDialog("You haven't clicked panels!");
+            } else {
+                clickedPanels.clear();
+                for (JPanel panel : panelsArray) {
+                    panel.setBackground(new Color(0x764B36));
+                }
+                resultsArea.setText("");
+            }
         }
     }
 
+   
+
     private void displayClickedPanels() {
-        resultsArea.setText("\n"); // Clear the resultsArea JTextArea before printing
-        
+        resultsArea.setText(""); // Clear the resultsArea JTextArea before printing
         resultsArea.setFont(new Font("Arial", Font.PLAIN, 25));
         resultsArea.setForeground(new Color(0x5C3420));
 
@@ -468,8 +496,8 @@ public class DFS_UI extends JFrame implements ActionListener {
         boolean foundMatch = false;
 
         matchArea.setText("\n"); // Clear the matchArea JTextArea before printing
-        matchArea.setFont(new Font("Arial", Font.PLAIN, 25));
-        matchArea.setForeground(new Color(0x5C3420));
+        matchArea.setFont(new Font("Arial", Font.BOLD, 30));
+        matchArea.setForeground(new Color(0x9B4922));
 
         for (List<Integer> sort : allSorts) {
             StringBuilder sb = new StringBuilder();
@@ -478,7 +506,7 @@ public class DFS_UI extends JFrame implements ActionListener {
             }
             String currentSortString = sb.toString().trim();
             if (result.equals(currentSortString)) {
-                matchArea.setText("I can do that.");
+                matchArea.setText("I can do that!");
                 foundMatch = true;
                 order.clear();
                 break; // No need to continue searching
@@ -500,10 +528,10 @@ public class DFS_UI extends JFrame implements ActionListener {
     public void actionPerformedReady(ActionEvent e) {
         if (e.getSource() == readyButton) {
             if (clickedPanels.isEmpty()) {
-                showErrorDialog("Select your routine first!");
+                showErrorDialog("Please make your choices first.");
             }
 
-            else if(matchArea.getText().equals("I can do that.")){
+            else if(matchArea.getText().equals("I can do that!")){
                 SwingUtilities.invokeLater(() -> {
                 new Success().setVisible(true);
                 });
