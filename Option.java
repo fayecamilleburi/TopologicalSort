@@ -1,5 +1,3 @@
-// package machine;
-
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
@@ -41,9 +39,9 @@ public class Option extends JPanel implements ActionListener {
     
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.gridx = 0;
-        gbc.gridy = 0; // Start at the top
-        gbc.weighty = 1; // Add vertical space to push it to the bottom
-        gbc.anchor = GridBagConstraints.PAGE_END; // Align at the bottom
+        gbc.gridy = 0; 
+        gbc.weighty = 1; 
+        gbc.anchor = GridBagConstraints.PAGE_END; 
         panel.add(greetings, gbc);
 
         return panel;
