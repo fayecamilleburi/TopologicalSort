@@ -5,7 +5,7 @@ import javax.swing.*;
 
 public class Credits extends JFrame implements ActionListener {
  
-    private JButton backButton;
+    private JButton backButton, timeButton;
 
     public Credits() {
         initComponents();
@@ -61,14 +61,14 @@ public class Credits extends JFrame implements ActionListener {
         panel.setBackground(new Color(0xEFE7DD));
 
         JLabel heading = new JLabel("GRWM");
-        heading.setBounds(0, 130, 1280, 120);
+        heading.setBounds(0, 110, 1280, 120);
         heading.setForeground(new Color(0x9B4922));
         heading.setFont(new Font("Arial", Font.ITALIC, 140));
         heading.setHorizontalAlignment(JLabel.CENTER);
         panel.add(heading);
 
         JLabel subheading = new JLabel("GET READY WITH ME");
-        subheading.setBounds(0, 250, 1280, 30);
+        subheading.setBounds(0, 230, 1280, 30);
         subheading.setForeground(new Color(0x9B4922));
         subheading.setFont(new Font("Arial", Font.PLAIN, 24));
         subheading.setHorizontalAlignment(JLabel.CENTER);
@@ -84,11 +84,20 @@ public class Credits extends JFrame implements ActionListener {
                 
 
         JLabel subtext = new JLabel(note);
-        subtext.setBounds(0, 300, 1280, 200);
+        subtext.setBounds(0, 280, 1280, 200);
         subtext.setForeground(new Color(0x9B4922));
         subtext.setFont(new Font("Arial", Font.ITALIC, 14));
         subtext.setHorizontalAlignment(JLabel.CENTER);
         panel.add(subtext);
+
+        timeButton = new JButton("See you next time!");
+        timeButton.setBounds(550, 500, 200, 30);
+        timeButton.setBackground(new Color(0x5C3420));
+        timeButton.setForeground(Color.WHITE);
+        timeButton.setFont(new Font("Arial", Font.BOLD, 12));
+        timeButton.setFocusable(false);
+        timeButton.addActionListener(this);
+        panel.add(timeButton);
 
         return panel;
     }
@@ -103,5 +112,9 @@ public class Credits extends JFrame implements ActionListener {
         if (e.getSource() == backButton) {
             dispose();
         }
+        if (e.getSource() == timeButton) {
+           System.exit(0);
+        }
     }
 }
+  
