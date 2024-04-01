@@ -1,5 +1,3 @@
-//This is the final code.
-
 // package machine;
 
 import java.awt.*;
@@ -108,7 +106,16 @@ public class Success extends JFrame implements ActionListener {
             SwingUtilities.invokeLater(() -> {
                 new Prompt().setVisible(true);
             });
-            dispose();  
+            disposeAllFrames();
+        }
+    }
+
+    private void disposeAllFrames() {
+        Window[] windows = Window.getWindows();
+        for (Window window : windows) {
+            if (window instanceof JFrame) {
+            window.dispose();
+            }
         }
     }
 
