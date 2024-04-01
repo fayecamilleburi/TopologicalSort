@@ -262,7 +262,7 @@ public class VSD_UI_FEMALE extends JFrame implements ActionListener {
                 panel.setBackground(isPanelClicked(panel) ? new Color(0x9B4922) : new Color(0x764B36));
             }
         });
-        socksLabel = new JLabel("Footsock");
+        socksLabel = new JLabel("Footsocks");
         socksLabel.setBounds(0, 0, 143, 90);
         socksLabel.setForeground(Color.WHITE);
         socksLabel.setFont(new Font("Arial", Font.PLAIN, 15));
@@ -285,7 +285,7 @@ public class VSD_UI_FEMALE extends JFrame implements ActionListener {
             }
         });
         
-        uTopLabel = new JLabel("Uniform Blouse");
+        uTopLabel = new JLabel("Blouse");
         uTopLabel.setBounds(0, 0, 143, 90);
         uTopLabel.setForeground(Color.WHITE);
         uTopLabel.setFont(new Font("Arial", Font.PLAIN, 15));
@@ -307,7 +307,7 @@ public class VSD_UI_FEMALE extends JFrame implements ActionListener {
                 panel.setBackground(isPanelClicked(panel) ? new Color(0x9B4922) : new Color(0x764B36));
             }
         });
-        uBotLabel = new JLabel("Uniform Skirt");
+        uBotLabel = new JLabel("Skirt");
         uBotLabel.setBounds(0, 0, 143, 90);
         uBotLabel.setForeground(Color.WHITE);
         uBotLabel.setFont(new Font("Arial", Font.PLAIN, 15));
@@ -351,7 +351,7 @@ public class VSD_UI_FEMALE extends JFrame implements ActionListener {
                 panel.setBackground(isPanelClicked(panel) ? new Color(0x9B4922) : new Color(0x764B36));
             }
         });
-        accPLabel = new JLabel("Uniform Necktie");
+        accPLabel = new JLabel("Necktie");
         accPLabel.setBounds(0, 0, 220, 90);
         accPLabel.setForeground(Color.WHITE);
         accPLabel.setFont(new Font("Arial", Font.PLAIN, 15));
