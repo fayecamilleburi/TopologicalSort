@@ -1,5 +1,3 @@
-// package machine;
-
 import java.awt.*;
 import java.awt.event.*;
 import java.util.ArrayList;
@@ -14,7 +12,7 @@ public class VSD_UI_MALE extends JFrame implements ActionListener {
     private JButton backButton, exitButton, submitButton, readyButton, clearButton;
     private ArrayList<JPanel> clickedPanels;
     private JPanel[] panelsArray2 = new JPanel[9];
-    private LinkedList<Integer>order = new LinkedList<>(); // Added by jim. Used to store panel index for order checking
+    private LinkedList<Integer>order = new LinkedList<>(); 
 
     public VSD_UI_MALE() {
         initComponents();
@@ -443,7 +441,6 @@ public class VSD_UI_MALE extends JFrame implements ActionListener {
         return panel;
     }
     
-    // Added by jim. Method for converting linked list into string
     public static String linkedListToString(LinkedList<Integer> linkedList) { 
         StringBuilder sb = new StringBuilder();
 
@@ -483,38 +480,34 @@ public class VSD_UI_MALE extends JFrame implements ActionListener {
     }
 
     private void displayClickedPanels() {
-        resultsArea.setText(""); // Clear the resultsArea JTextArea before printing
+        resultsArea.setText(""); 
         
         resultsArea.setFont(new Font("Arial", Font.PLAIN, 25));
         resultsArea.setForeground(new Color(0x5C3420));
 
-        // Print the contents of clickedPanels to resultsArea with indices
         for (int i = 0; i < clickedPanels.size(); i++) {
             JPanel panel = clickedPanels.get(i);
-            // Find the index of the panel in the panelsArray
+            
             int panelIndex = -1;
             for (int j = 0; j < panelsArray2.length; j++) {
                 if (panel == panelsArray2[j]) {
                     panelIndex = j;
-                    order.add(j); // Added by jim. Add the value of j to linked list that will store the order
+                    order.add(j); 
                     break;
                 }
             }
             if (panelIndex != -1) {
-                JLabel label = (JLabel) panel.getComponent(0); // Assuming the JLabel is the first component
+                JLabel label = (JLabel) panel.getComponent(0); 
                 String panelText = label.getText();
-                int index =  panelIndex + 1; // Added by jim. Index will be used instead for better user readablity
+                int index =  panelIndex + 1; 
                 resultsArea.append(index + ". " + panelText + "\n");
             }
         }
     }
 
-    // Added by jim. Method for checking the given order from the list of possible sorts
     private void orderChecking(){
-        String result = linkedListToString(order); //To be used for comparing to list of possible orders
-        
-        // ---------- Topological Sort using VSD ----------
-        // Create a graph for steps to get dressed for school
+        String result = linkedListToString(order);
+     
         TopologicalSort_VSD graph = new TopologicalSort_VSD(9);
         graph.addEdge(0, 3);
         graph.addEdge(1, 4);
@@ -525,7 +518,6 @@ public class VSD_UI_MALE extends JFrame implements ActionListener {
         graph.addEdge(6, 8);
         graph.addEdge(7, 8);
 
-        // Performs Topological Sort using DFS and stores all possible orders in list
         List<List<Integer>> allOrders = graph.topologicalSortVariableSizeDecrease();
         boolean foundMatch = false;
 
@@ -540,10 +532,10 @@ public class VSD_UI_MALE extends JFrame implements ActionListener {
             }
             String currentSortString = sb.toString().trim();
             if (result.equals(currentSortString)) {
-                matchArea.setText("I can do that!");
+                matchArea.setText("I can wear that!");
                 foundMatch = true;
                 order.clear();
-                break; // No need to continue searching
+                break; 
             }
         }
 
@@ -565,7 +557,7 @@ public class VSD_UI_MALE extends JFrame implements ActionListener {
                 showErrorDialog("Select your clothings first!");
             }
             
-            else if(matchArea.getText().equals("I can do that!")){
+            else if(matchArea.getText().equals("I can wear that!")){
                 SwingUtilities.invokeLater(() -> {
                 new Winner().setVisible(true);
                 });
