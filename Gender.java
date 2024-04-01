@@ -56,7 +56,7 @@ public class Gender extends JFrame implements ActionListener {
         panel.add(subtext);
 
         backButton = new JButton("Back");
-        backButton.setBounds(20, 20, 100, 40);
+        backButton.setBounds(20, 15, 100, 40);
         backButton.setBackground(new Color(0x9B4922));
         backButton.setForeground(Color.WHITE);
         backButton.setFocusable(false);
@@ -64,7 +64,7 @@ public class Gender extends JFrame implements ActionListener {
         panel.add(backButton);
 
         exitButton = new JButton("Exit");
-        exitButton.setBounds(1152, 20, 100, 40);
+        exitButton.setBounds(1150, 15, 100, 40);
         exitButton.setBackground(new Color(0x9B4922));
         exitButton.setForeground(Color.WHITE);
         exitButton.setFocusable(false);
