@@ -21,9 +21,11 @@ public class VSD_UI_FEMALE extends JFrame implements ActionListener {
     private void initComponents() {
         setTitle("GRWM");
         setSize(new Dimension(1280, 720));
+
         setResizable(false);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
+        
         add(mainPanel());
     }
 
@@ -77,7 +79,6 @@ public class VSD_UI_FEMALE extends JFrame implements ActionListener {
     public void actionPerformedBack(ActionEvent e) {
         if (e.getSource() == backButton) {
             dispose();
-
             SwingUtilities.invokeLater(() -> {
                 new Gender().setVisible(true);
             });
@@ -124,7 +125,6 @@ public class VSD_UI_FEMALE extends JFrame implements ActionListener {
                            + "which clothing comes first?<br>"
                            + "I need your help to look neat<br>"
                            + "and presentable at school.</div></html>";
-
 
         JLabel content = new JLabel(htmlContent);
         content.setBounds(0, 80, 350, 300);
@@ -448,7 +448,6 @@ public class VSD_UI_FEMALE extends JFrame implements ActionListener {
                 sb.append(" ");
             }
         }
-
         return sb.toString();
     }
 
@@ -574,8 +573,7 @@ public class VSD_UI_FEMALE extends JFrame implements ActionListener {
             
         } else {
             clickedPanels.add(panel);
-        }
-            
+        }  
     }
 
     private boolean isPanelClicked(JPanel panel) {
