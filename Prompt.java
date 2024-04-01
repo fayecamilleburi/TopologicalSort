@@ -5,7 +5,7 @@ import java.awt.event.*;
 import javax.swing.*;
 
 public class Prompt extends JFrame implements ActionListener {
-    public String name;
+    public static String name;
     private JPanel currentPanel;
     private JTextField nameField;
     private JButton tutorialButton, startButton, creditsButton, enterButton;
@@ -126,14 +126,14 @@ public class Prompt extends JFrame implements ActionListener {
 
         nameField = new JTextField();
         nameField.setFont(new Font("Arial", Font.PLAIN, 14));
-        nameField.setBounds(350, 270, 500, 20);
+        nameField.setBounds(350, 270, 500, 25);
         nameField.setForeground(new Color(0xEFE7DD));
         nameField.setBackground(new Color(0x9B4922));
         nameField.setHorizontalAlignment(JTextField.CENTER);
         panel.add(nameField);
 
         JLabel subtext = new JLabel("Enter your name");
-        subtext.setBounds(0, 295, 1200, 14);
+        subtext.setBounds(0, 300, 1200, 14);
         subtext.setForeground(new Color(0x764B36));
         subtext.setFont(new Font("Arial", Font.ITALIC, 12));
         subtext.setHorizontalAlignment(JLabel.CENTER);
@@ -144,8 +144,8 @@ public class Prompt extends JFrame implements ActionListener {
         enterButton.setBackground(new Color(0x5C3420));
         enterButton.setForeground(Color.WHITE);
         enterButton.setFont(new Font("Arial", Font.BOLD, 12));
-        enterButton.setFocusable(false);
         enterButton.addActionListener(this::actionPerformedEnter);
+        enterButton.setFocusable(false);
         panel.add(enterButton);
 
         return panel;
@@ -161,6 +161,7 @@ public class Prompt extends JFrame implements ActionListener {
                 dialog.setVisible(true);
                 return;
             } else {
+                setName(name);
                 getContentPane().removeAll();
                 getContentPane().add(new Option(name));
                 revalidate();
