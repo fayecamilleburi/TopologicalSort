@@ -67,7 +67,6 @@ public class Gender extends JFrame implements ActionListener {
         exitButton.setFocusable(false);
         panel.add(exitButton);
 
-        
         return panel;
     }
 
@@ -76,7 +75,6 @@ public class Gender extends JFrame implements ActionListener {
             SwingUtilities.invokeLater(() -> {
                 new Choices().setVisible(true);
             });
-
             dispose();
         }
     }
@@ -142,7 +140,6 @@ public class Gender extends JFrame implements ActionListener {
     public void actionPerformedTwo(ActionEvent e) {
         if (e.getSource() == optionTwo) {
             dispose();
-
             SwingUtilities.invokeLater(() -> {
                 new VSD_UI_FEMALE().setVisible(true);
             });
@@ -153,6 +150,5 @@ public class Gender extends JFrame implements ActionListener {
         SwingUtilities.invokeLater(() -> {
             new Gender().setVisible(true);
         });
-    }
-    
+    }   
 }
