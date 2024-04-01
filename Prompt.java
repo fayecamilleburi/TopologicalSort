@@ -206,6 +206,5 @@ public class Prompt extends JFrame implements ActionListener {
         SwingUtilities.invokeLater(() -> {
             new Prompt().setVisible(true);
         });
-    }
-    
+    }   
 }
