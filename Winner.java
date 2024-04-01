@@ -79,7 +79,7 @@ public class Winner extends JFrame implements ActionListener {
         String content = "<html><div style='text-align: center;'>"
                            + "I'll definitely make a good impression in my uniform.<br>"
                            + "Thanks to you, I'll get my dream come true!</div></html>";
-
+    
         JLabel text = new JLabel(content);
         text.setBounds(0, 215, 904, 50);
         text.setForeground(new Color(0x5C3420));
