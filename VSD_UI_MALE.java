@@ -218,7 +218,7 @@ public class VSD_UI_MALE extends JFrame implements ActionListener {
             }
         });
         //String htmlContent0 = "Undershirt Tank top";
-        topLabel = new JLabel("Inner Sando");
+        topLabel = new JLabel("Sando");
         topLabel.setBounds(0, 0, 143, 90);
         topLabel.setForeground(Color.WHITE);
         topLabel.setFont(new Font("Arial", Font.PLAIN, 15));
@@ -285,7 +285,7 @@ public class VSD_UI_MALE extends JFrame implements ActionListener {
             }
         });
         
-        uTopLabel = new JLabel("Polo Uniform");
+        uTopLabel = new JLabel("Polo");
         uTopLabel.setBounds(0, 0, 143, 90);
         uTopLabel.setForeground(Color.WHITE);
         uTopLabel.setFont(new Font("Arial", Font.PLAIN, 15));
