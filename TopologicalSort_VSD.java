@@ -1,7 +1,3 @@
-// This is the final code.
-// Code by: Jimuel Angelo Maxwell
-// package machine;
-
 import java.util.*;
 
 class TopologicalSort_VSD {
