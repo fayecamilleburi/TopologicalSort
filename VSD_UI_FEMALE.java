@@ -476,6 +476,7 @@ public class VSD_UI_FEMALE extends JFrame implements ActionListener {
                 }
                 resultsArea.setText("");
                 matchArea.setText("");
+                order.clear();
             }
         }
     }

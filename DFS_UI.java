@@ -444,6 +444,7 @@ public class DFS_UI extends JFrame implements ActionListener {
                 }
                 resultsArea.setText("");
                 matchArea.setText("");
+                order.clear();
             }
         }
     }
