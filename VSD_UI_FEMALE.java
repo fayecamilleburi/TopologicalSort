@@ -403,7 +403,7 @@ public class VSD_UI_FEMALE extends JFrame implements ActionListener {
         matchArea = new JTextArea();
         matchArea.setEditable(false);
         matchArea.setBounds(20, 365, 384, 50);
-        matchArea.setBackground(new Color(0xEFE7DD);
+        matchArea.setBackground(new Color(0xEFE7DD));
         panel.add(matchArea);
 
         readyButton = new JButton("We're ready!");
@@ -502,14 +502,16 @@ public class VSD_UI_FEMALE extends JFrame implements ActionListener {
             }
             String currentSortString = sb.toString().trim();
             if (result.equals(currentSortString)) {
-                matchArea.setText("I can do that");
+                matchArea.setText("I can do that.");
                 foundMatch = true;
+                order.clear();
                 break; // No need to continue searching
             }
         }
 
         if (!foundMatch) {
             matchArea.setText("Oops!");
+            order.clear();
         }
     }
 
@@ -525,7 +527,7 @@ public class VSD_UI_FEMALE extends JFrame implements ActionListener {
                 showErrorDialog("Select your routine first!");
             }
             
-            else if(matchArea.getText().equals("I can do that")){
+            else if(matchArea.getText().equals("I can do that.")){
                 SwingUtilities.invokeLater(() -> {
                 new Success().setVisible(true);
                 });

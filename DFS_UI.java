@@ -480,12 +480,14 @@ public class DFS_UI extends JFrame implements ActionListener {
             if (result.equals(currentSortString)) {
                 matchArea.setText("I can do that.");
                 foundMatch = true;
+                order.clear();
                 break; // No need to continue searching
             }
         }
 
         if (!foundMatch) {
             matchArea.setText("Oops!");
+            order.clear();
         }
     }
 
@@ -501,7 +503,7 @@ public class DFS_UI extends JFrame implements ActionListener {
                 showErrorDialog("Select your routine first!");
             }
 
-            else if(matchArea.getText().equals("I can do that")){
+            else if(matchArea.getText().equals("I can do that.")){
                 SwingUtilities.invokeLater(() -> {
                 new Success().setVisible(true);
                 });
