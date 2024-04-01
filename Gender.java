@@ -56,9 +56,10 @@ public class Gender extends JFrame implements ActionListener {
         panel.add(subtext);
 
         backButton = new JButton("Back");
-        backButton.setBounds(10, 20, 100, 40);
+        backButton.setBounds(20, 20, 100, 40);
         backButton.setBackground(new Color(0x9B4922));
         backButton.setForeground(Color.WHITE);
+        backButton.setFocusable(false);
         backButton.addActionListener(this::actionPerformedBack);
         panel.add(backButton);
 
@@ -66,6 +67,7 @@ public class Gender extends JFrame implements ActionListener {
         exitButton.setBounds(1152, 20, 100, 40);
         exitButton.setBackground(new Color(0x9B4922));
         exitButton.setForeground(Color.WHITE);
+        exitButton.setFocusable(false);
         exitButton.addActionListener(this::actionPerformedExit);
         panel.add(exitButton);
 
@@ -75,7 +77,7 @@ public class Gender extends JFrame implements ActionListener {
 
     public JPanel optionHeading() {
         JPanel panel = new JPanel(new GridBagLayout());
-        panel.setBounds(30, 30, 1200, 260);
+        panel.setBounds(30, 40, 1200, 260);
         panel.setBackground(new Color(0xEFE7DD));
 
         JLabel greetings = new JLabel("Select Gender:");
@@ -94,18 +96,19 @@ public class Gender extends JFrame implements ActionListener {
 
     public void actionPerformedBack(ActionEvent e) {
         if (e.getSource() == backButton) {
-            // Code goes here...
-            dispose();
-
             SwingUtilities.invokeLater(() -> {
                 new Choices().setVisible(true);
             });
+
+            dispose();
         }
     }
 
     public void actionPerformedExit(ActionEvent e) {
         if (e.getSource() == exitButton) {
-            
+            SwingUtilities.invokeLater(() -> {
+                new Credits().setVisible(true);
+            });
         }
     }
 
@@ -117,25 +120,27 @@ public class Gender extends JFrame implements ActionListener {
         
 
         optionOne = new JButton("Male");
-        optionOne.setBounds(380, 20, 200, 80);
+        optionOne.setBounds(375, 30, 195, 50);
         optionOne.setBackground(new Color(0x5C3420));
         optionOne.setForeground(Color.WHITE);
-        optionOne.setFont(new Font("Arial", Font.BOLD, 14));
+        optionOne.setFont(new Font("Arial", Font.BOLD, 13));
+        optionOne.setFocusable(false);
         optionOne.addActionListener(this);
         panel.add(optionOne);
 
         JLabel or = new JLabel("or");
-        or.setBounds(585, 50, 30, 30);
+        or.setBounds(575, 30, 50, 50);
         or.setForeground(new Color(0x9B4922));
         or.setFont(new Font("Arial", Font.ITALIC, 30));
         or.setHorizontalAlignment(JLabel.CENTER);
         panel.add(or);
 
         optionTwo = new JButton("Female");
-        optionTwo.setBounds(625, 20, 200, 80);
+        optionTwo.setBounds(635, 30, 195, 50);
         optionTwo.setBackground(new Color(0x5C3420));
         optionTwo.setForeground(Color.WHITE);
-        optionTwo.setFont(new Font("Arial", Font.BOLD, 14));
+        optionTwo.setFont(new Font("Arial", Font.BOLD, 13));
+        optionTwo.setFocusable(false);
         optionTwo.addActionListener(this::actionPerformedTwo);
         panel.add(optionTwo);
 
