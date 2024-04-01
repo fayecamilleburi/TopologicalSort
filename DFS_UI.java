@@ -80,7 +80,6 @@ public class DFS_UI extends JFrame implements ActionListener {
     public void actionPerformedBack(ActionEvent e) {
         if (e.getSource() == backButton) {
             dispose();
-
             SwingUtilities.invokeLater(() -> {
                 new Choices().setVisible(true);
             });
@@ -127,7 +126,6 @@ public class DFS_UI extends JFrame implements ActionListener {
                            + "my morning routine so I can<br>"
                            + "come fresh and ready for my<br>"
                            + "school activities.</div></html>";
-
 
         JLabel content = new JLabel(htmlContent);
         content.setBounds(0, 80, 350, 300);
@@ -394,8 +392,6 @@ public class DFS_UI extends JFrame implements ActionListener {
         matchArea.setHorizontalAlignment(SwingConstants.CENTER);
         panel.add(matchArea);
 
-        
-
         readyButton = new JButton("We're ready!");
         readyButton.setBounds(300, 460, 120, 30);
         readyButton.setBackground(new Color(0x5C3420));
@@ -410,14 +406,12 @@ public class DFS_UI extends JFrame implements ActionListener {
     
     public static String linkedListToString(LinkedList<Integer> linkedList) { 
         StringBuilder sb = new StringBuilder();
-
         for (int i = 0; i < linkedList.size(); i++) {
             sb.append(linkedList.get(i));
             if (i < linkedList.size() - 1) {
                 sb.append(" ");
             }
         }
-
         return sb.toString();
     }
 
